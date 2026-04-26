@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Chopp Paraguay — Delivery de Chopp</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#E81C23;
+  --red2:#C4151B;
+  --red-light:#FFF1F1;
+  --dark:#1A0002;
+  --white:#FFFFFF;
+  --off:#F8F8F8;
+  --text:#1A0002;
+  --muted:#6B7280;
+  --border:#F0E0E0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--red)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--red);letter-spacing:3px;text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.5px;transition:.2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:var(--white)!important;padding:10px 22px;border-radius:100px;font-weight:700!important;transition:.2s!important;box-shadow:0 4px 16px rgba(232,28,35,0.3)}
+.nav-cta:hover{background:var(--red2)!important;transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,28,35,0.4)!important}
+
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--white);position:relative;overflow:hidden}
+.hero-red-block{position:absolute;top:0;right:0;width:45%;height:100%;background:var(--red);clip-path:polygon(12% 0,100% 0,100% 100%,0% 100%)}
+.hero-pattern{position:absolute;top:0;right:0;width:45%;height:100%;opacity:0.06;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:12px 12px}
+.hero-inner{max-width:1100px;margin:0 auto;padding:100px 40px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--red-light);border:1px solid rgba(232,28,35,0.2);color:var(--red);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;animation:fadeUp .6s .1s both}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,100px);line-height:.88;color:var(--text);margin-bottom:20px;animation:fadeUp .6s .3s both}
+.hero-h1 em{color:var(--red);font-style:normal;display:block}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:36px;animation:fadeUp .6s .5s both;max-width:440px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .6s .7s both}
+.btn-red{background:var(--red);color:var(--white);padding:16px 32px;border-radius:100px;font-size:14px;font-weight:800;text-decoration:none;transition:.25s;letter-spacing:.3px;box-shadow:0 6px 20px rgba(232,28,35,0.35)}
+.btn-red:hover{background:var(--red2);transform:translateY(-3px);box-shadow:0 10px 28px rgba(232,28,35,0.45)}
+.btn-outline{background:transparent;color:var(--text);padding:16px 32px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;border:2px solid var(--border);transition:.25s}
+.btn-outline:hover{border-color:var(--red);color:var(--red)}
+.hero-stats{display:flex;gap:32px;margin-top:48px;animation:fadeUp .6s .9s both;flex-wrap:wrap}
+.hstat{text-align:center;background:var(--off);border-radius:16px;padding:16px 24px;border:1px solid var(--border)}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--red);line-height:1}
+.hstat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.hero-right{animation:fadeUp .6s .5s both}
+.trust-card{background:var(--white);border-radius:24px;padding:32px;box-shadow:0 20px 60px rgba(232,28,35,0.15);border:1px solid var(--border)}
+.trust-card h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red);letter-spacing:1px;margin-bottom:20px}
+.trust-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.trust-item:last-of-type{border-bottom:none;margin-bottom:8px}
+.t-icon{width:42px;height:42px;border-radius:12px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.t-text strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.t-text span{font-size:12px;color:var(--muted);line-height:1.5}
+.trust-cta{display:block;background:var(--red);color:var(--white);text-align:center;padding:15px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none;transition:.2s;box-shadow:0 4px 16px rgba(232,28,35,0.3);letter-spacing:.3px}
+.trust-cta:hover{background:var(--red2);transform:translateY(-2px)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:720px){.hero-inner{grid-template-columns:1fr}.hero-right{display:none}.hero-red-block{display:none}nav{padding:12px 16px}.nav-links a:not(.nav-cta){display:none}}
+
+.red-bar{height:6px;background:linear-gradient(90deg,var(--red),#FF6B6B,var(--red))}
+
+.brands-section{padding:80px 20px;background:var(--off)}
+.brands-inner{max-width:1060px;margin:0 auto}
+.sec-eye{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);line-height:1;color:var(--text);margin-bottom:40px}
+.sec-title span{color:var(--red)}
+.brand-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.brand-tab{padding:10px 22px;border-radius:100px;border:2px solid var(--border);font-size:13px;font-weight:700;cursor:pointer;transition:.2s;background:var(--white);color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif}
+.brand-tab:hover{border-color:var(--red);color:var(--red)}
+.brand-tab.active{background:var(--red);color:var(--white);border-color:var(--red)}
+.brand-panel{display:none;animation:panelIn .3s ease}
+.brand-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.brand-panel.active{grid-template-columns:1fr}}
+
+.price-card{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:28px;transition:.3s;position:relative;overflow:hidden}
+.price-card:hover{border-color:rgba(232,28,35,0.4);box-shadow:0 12px 40px rgba(232,28,35,0.1);transform:translateY(-4px)}
+.price-card.featured{border-color:var(--red)}
+.price-card.featured::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:100px;margin-bottom:14px;text-transform:uppercase}
+.badge-red{background:var(--red-light);color:var(--red)}
+.badge-green{background:#ECFDF5;color:#059669}
+.card-lt{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--red);line-height:1}
+.card-lt span{font-size:22px;color:var(--muted)}
+.card-price{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--text);margin:6px 0 4px}
+.card-reload{font-size:12px;color:var(--muted);margin-bottom:16px}
+.card-reload strong{color:var(--red)}
+.card-inc{list-style:none;margin-bottom:20px}
+.card-inc li{font-size:13px;color:var(--muted);padding:6px 0;border-bottom:1px solid #F3F4F6;display:flex;align-items:center;gap:8px}
+.card-inc li::before{content:"✓";color:var(--red);font-weight:800;font-size:12px;flex-shrink:0}
+.btn-reserve{display:block;padding:14px;border-radius:12px;font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;text-align:center;text-decoration:none;transition:.25s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-reserve.red{background:var(--red);color:var(--white);box-shadow:0 4px 16px rgba(232,28,35,0.3)}
+.btn-reserve.red:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,28,35,0.4)}
+.btn-reserve.outline{background:transparent;color:var(--red);border:2px solid var(--red)}
+.btn-reserve.outline:hover{background:var(--red);color:var(--white)}
+.card-note{margin-top:12px;font-size:11px;color:var(--muted);text-align:center;padding:8px;background:var(--off);border-radius:8px}
+.dashed-card{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:12px;border-style:dashed!important;border-color:#DDD!important;background:var(--off)!important}
+.dashed-card:hover{border-color:var(--red)!important}
+
+.steps-section{padding:80px 20px;background:var(--white)}
+.steps-inner{max-width:960px;margin:0 auto;text-align:center}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:48px}
+.step{padding:32px 20px;border-radius:20px;background:var(--off);border:2px solid transparent;transition:.3s}
+.step:hover{border-color:var(--red);background:var(--white);box-shadow:0 8px 32px rgba(232,28,35,0.1)}
+.step-num{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.step-icon{font-size:36px;margin-bottom:12px}
+.step-title{font-weight:800;font-size:15px;color:var(--text);margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+.cta-banner{background:var(--red);padding:72px 20px;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'CHOPP';font-family:'Bebas Neue',sans-serif;font-size:200px;color:rgba(255,255,255,0.06);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:10px}
+.cta-banner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,68px);color:var(--white);margin-bottom:12px;position:relative}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:32px;position:relative}
+.btn-white{display:inline-block;background:var(--white);color:var(--red);padding:18px 40px;border-radius:100px;font-size:15px;font-weight:800;text-decoration:none;transition:.25s;box-shadow:0 8px 24px rgba(0,0,0,0.2);letter-spacing:.3px;position:relative}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.25)}
+
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:200;background:#25D366;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.5);animation:wapulse 2.5s infinite}
+@keyframes wapulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 36px rgba(37,211,102,0.8),0 0 0 8px rgba(37,211,102,0.1)}}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+
+footer{background:var(--dark);padding:40px 20px;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--red);letter-spacing:4px;margin-bottom:8px}
+.footer-info{font-size:13px;color:rgba(255,255,255,0.45);line-height:2}
+.footer-info a{color:#FF6B6B;text-decoration:none}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);margin-top:20px;letter-spacing:1px}
+
+.reveal{opacity:0;transform:translateY(28px);transition:.55s ease}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<a class="wa-float" href="https://wa.me/595994808080?text=Quiero%20reservar%20mi%20chopp!" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<nav>
+  <a class="nav-logo" href="#">MEGA CHOPP</a>
+  <div class="nav-links">
+    <a href="#precios">Precios</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="https://wa.me/595994808080" target="_blank" class="nav-cta">📞 Reservar ahora</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-red-block"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">🍺 Delivery en Asunción</div>
+      <h1 class="hero-h1">CHOPP FRÍO<em>EN TU PUERTA</em></h1>
+      <p class="hero-sub">Máquina, barril y mesa hasta tu domicilio o evento. Munich, Pilsen, Skol y Stella Artois.</p>
+      <div class="hero-btns">
+        <a href="#precios" class="btn-red">Ver precios →</a>
+        <a href="https://wa.me/595994808080?text=Quiero%20reservar!" target="_blank" class="btn-outline">💬 WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n">10K+</div><div class="hstat-l">Servicios</div></div>
+        <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">Marcas</div></div>
+        <div class="hstat"><div class="hstat-n">2018</div><div class="hstat-l">Desde</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="trust-card">
+        <h3>¿Por qué elegirnos?</h3>
+        <div class="trust-item">
+          <div class="t-icon">🚚</div>
+          <div class="t-text"><strong>Delivery completo</strong><span>Llevamos todo — máquina, barril, mesa y vasos.</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">❄️</div>
+          <div class="t-text"><strong>Siempre bien frío</strong><span>Equipo refrigerado para que llegue en temperatura.</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">⭐</div>
+          <div class="t-text"><strong>+10.000 servicios</strong><span>Los favoritos de Asunción desde 2018.</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">💰</div>
+          <div class="t-text"><strong>Precio especial x5+</strong><span>A partir de 5 barriles consultá tu descuento.</span></div>
+        </div>
+        <a href="https://wa.me/595994808080?text=Quiero%20reservar%20mi%20chopp!" target="_blank" class="trust-cta">📲 Reservar ahora por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="red-bar"></div>
+
+<section id="precios" class="brands-section">
+  <div class="brands-inner reveal">
+    <div class="sec-eye">Nuestros productos</div>
+    <h2 class="sec-title">ELEGÍ TU<br><span>CHOPP</span></h2>
+    <div class="brand-tabs">
+      <button class="brand-tab active" onclick="showBrand('munich-orig',this)">Munich Original</button>
+      <button class="brand-tab" onclick="showBrand('munich-ultra',this)">Munich Ultra</button>
+      <button class="brand-tab" onclick="showBrand('pilsen',this)">Pilsen</button>
+      <button class="brand-tab" onclick="showBrand('skol',this)">Skol</button>
+      <button class="brand-tab" onclick="showBrand('stella',this)">Stella Artois</button>
+    </div>
+
+    <div id="munich-orig" class="brand-panel active">
+      <div class="price-card">
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 400.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20Munich%20Original%2030L!" target="_blank" class="btn-reserve outline">Reservar por WhatsApp</a>
+      </div>
+      <div class="price-card featured">
+        <div class="badge badge-red">⭐ Más popular</div>
+        <div class="card-lt">50<span> lts</span></div>
+        <div class="card-price">₲ 600.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 50 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20Munich%20Original%2050L!" target="_blank" class="btn-reserve red">Reservar por WhatsApp</a>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+    </div>
+
+    <div id="munich-ultra" class="brand-panel">
+      <div class="price-card featured">
+        <div class="badge badge-red">Premium</div>
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 460.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 450.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20Munich%20Ultra%2030L!" target="_blank" class="btn-reserve red">Reservar por WhatsApp</a>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+      <div class="price-card dashed-card">
+        <div style="font-size:40px">🍺</div>
+        <div style="font-weight:800;font-size:16px">¿Evento grande?</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">Para 5 barriles o más tenemos precios especiales.</div>
+        <a href="https://wa.me/595994808080?text=Consulta%20precio%20especial%20Munich%20Ultra" target="_blank" class="btn-reserve red" style="width:100%">Consultar precio especial</a>
+      </div>
+    </div>
+
+    <div id="pilsen" class="brand-panel">
+      <div class="price-card">
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 400.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 280.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20Pilsen%2030L!" target="_blank" class="btn-reserve outline">Reservar por WhatsApp</a>
+      </div>
+      <div class="price-card featured">
+        <div class="badge badge-green">🎁 +10 litros de REGALO</div>
+        <div class="card-lt">60<span> lts</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2 barriles de 30L — pagás solo 50L</div>
+        <div class="card-price">₲ 600.000</div>
+        <div class="card-reload">Recarga 30L: <strong>₲ 280.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>2 Barriles de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20la%20promo%20Pilsen%2060L!" target="_blank" class="btn-reserve red">Reservar por WhatsApp</a>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+    </div>
+
+    <div id="skol" class="brand-panel">
+      <div class="price-card featured">
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 450.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 390.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20Skol%2030L!" target="_blank" class="btn-reserve red">Reservar por WhatsApp</a>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+      <div class="price-card dashed-card">
+        <div style="font-size:40px">🍺</div>
+        <div style="font-weight:800;font-size:16px">¿Evento grande?</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">Para 5 barriles o más tenemos precios especiales.</div>
+        <a href="https://wa.me/595994808080?text=Consulta%20precio%20especial%20Skol" target="_blank" class="btn-reserve red" style="width:100%">Consultar precio especial</a>
+      </div>
+    </div>
+
+    <div id="stella" class="brand-panel">
+      <div class="price-card featured">
+        <div class="badge badge-red">Premium belga</div>
+        <div class="card-lt">20<span> lts</span></div>
+        <div class="card-price">₲ 550.000</div>
+        <div class="card-reload" style="color:var(--muted)">Consultá disponibilidad de recarga</div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 20 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <a href="https://wa.me/595994808080?text=Quiero%20Stella%20Artois%2020L!" target="_blank" class="btn-reserve red">Reservar por WhatsApp</a>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+      <div class="price-card dashed-card">
+        <div style="font-size:40px">🌟</div>
+        <div style="font-weight:800;font-size:16px">Evento exclusivo</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">La cerveza premium belga para eventos que merecen lo mejor.</div>
+        <a href="https://wa.me/595994808080?text=Consulta%20Stella%20Artois" target="_blank" class="btn-reserve outline" style="width:100%">Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" class="steps-section">
+  <div class="steps-inner reveal">
+    <div class="sec-eye">Simple y rápido</div>
+    <h2 class="sec-title">¿CÓMO<br><span style="color:var(--red)">FUNCIONA?</span></h2>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">Paso 01</div><div class="step-icon">🍺</div><div class="step-title">Elegí tu marca</div><div class="step-desc">Munich, Pilsen, Skol o Stella. El chopp que más te gusta para tu evento.</div></div>
+      <div class="step"><div class="step-num">Paso 02</div><div class="step-icon">📲</div><div class="step-title">Reservá</div><div class="step-desc">Escribinos por WhatsApp solo para confirmar. Sin preguntas, sin vueltas.</div></div>
+      <div class="step"><div class="step-num">Paso 03</div><div class="step-icon">🚚</div><div class="step-title">Te lo llevamos</div><div class="step-desc">Delivery en Asunción y Gran Asunción con todo el equipo incluido.</div></div>
+      <div class="step"><div class="step-num">Paso 04</div><div class="step-icon">🎉</div><div class="step-title">¡A disfrutar!</div><div class="step-desc">Chopp frío y bien tirado. Nosotros nos ocupamos del resto.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner reveal">
+  <h2>¿LISTO PARA EL MEJOR CHOPP?</h2>
+  <p>Ya elegiste tu marca y conocés los precios — solo escribinos para reservar.</p>
+  <a href="https://wa.me/595994808080?text=Quiero%20reservar%20mi%20chopp!" target="_blank" class="btn-white">💬 Reservar por WhatsApp</a>
+</section>
+
+<footer>
+  <div class="footer-logo">MEGA CHOPP</div>
+  <div class="footer-info">
+    Mariscal López, entre Mateo Estigarribia e Insaulrralde · Asunción, Paraguay<br>
+    <a href="tel:+595994808080">+595 994 808 080</a> · <a href="mailto:info@megachopp.com.py">info@megachopp.com.py</a>
+  </div>
+  <div class="footer-copy">© 2025 MEGA CHOPP PARAGUAY · TODOS LOS DERECHOS RESERVADOS</div>
+</footer>
+
+<script>
+function showBrand(id,btn){
+  document.querySelectorAll('.brand-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.brand-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -218,6 +218,21 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .reveal{opacity:0;transform:translateY(28px);transition:.55s ease}
 .reveal.show{opacity:1;transform:none}
 
+/* BRAND COLORS */
+:root{--munich-green:#1A6B3A;--skol-yellow:#F5C800;--stella-burg:#8B1A1A}
+.pack-header.munich{background:var(--munich-green)}
+.pack-header.skol{background:var(--skol-yellow);color:#1A0002}
+.pack-header.stella{background:var(--stella-burg)}
+.pack-num.green{color:var(--munich-green)}
+.pack-num.yellow{color:var(--skol-yellow)}
+.pack-num.burg{color:var(--stella-burg)}
+.pack-card.featured-munich{border-color:var(--munich-green)}
+.pack-card.featured-munich::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--munich-green)}
+.pack-card.featured-skol{border-color:var(--skol-yellow)}
+.pack-card.featured-skol::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--skol-yellow)}
+.pack-card.featured-stella{border-color:var(--stella-burg)}
+.pack-card.featured-stella::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--stella-burg)}
+
 /* PILSEN PACKS */
 .brand-panel.pilsen-panel.active{display:block}
 .pilsen-packs{display:grid;grid-template-columns:1fr;gap:14px}
@@ -277,7 +292,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         </div>
         <div class="trust-item">
           <div class="t-icon">❄️</div>
-          <div class="t-text"><strong>Siempre bien frío</strong><span>Equipo refrigerado para que llegue en temperatura.</span></div>
+          <div class="t-text"><strong>Siempre bien frío</strong><span>Equipo eléctrico que mantiene la cerveza fría.</span></div>
         </div>
         <div class="trust-item">
           <div class="t-icon">⭐</div>
@@ -309,46 +324,61 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
     </div>
 
     <div id="munich-orig" class="brand-panel">
-      <div class="price-card">
-        <div class="card-lt">30<span> lts</span></div>
-        <div class="card-price">₲ 400.000</div>
-        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+      <div class="pack-card">
+        <div class="pack-header munich">BARRIL MUNICH <span>30 LTS</span></div>
+        <div class="pack-num green">1x</div>
+        <div class="pack-lts">30 litros</div>
+        <div class="pack-price">₲ 400.000</div>
+        <div class="pack-save invisible">-</div>
+        <ul class="pack-inc">
+          <li>1 Máquina de chopp</li>
+          <li>1 Barril de 30 litros</li>
+          <li>Mesa para la máquina</li>
+          <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
-        <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%">Quiero reservar →</button>
+        <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
-      <div class="price-card featured">
-        <div class="badge badge-red">⭐ Más popular</div>
-        <div class="card-lt">50<span> lts</span></div>
-        <div class="card-price">₲ 600.000</div>
-        <div class="card-reload">Recarga 30L: <strong>₲ 350.000</strong> · Recarga 50L: <strong>₲ 550.000</strong></div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>1 Barril de 50 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+      <div class="pack-card featured-munich">
+        <div class="pack-header munich">BARRIL MUNICH <span>50 LTS</span></div>
+        <div class="badge badge-green" style="margin-bottom:10px">⭐ Más popular</div>
+        <div class="pack-num green">1x</div>
+        <div class="pack-lts">50 litros</div>
+        <div class="pack-price">₲ 600.000</div>
+        <div class="pack-save invisible">-</div>
+        <ul class="pack-inc">
+          <li>1 Máquina de chopp</li>
+          <li>1 Barril de 50 litros</li>
+          <li>Mesa para la máquina</li>
+          <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
-        <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">Quiero reservar →</button>
+        <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
     </div>
 
     <div id="munich-ultra" class="brand-panel">
-      <div class="price-card featured">
-        <div class="badge badge-red">Premium</div>
-        <div class="card-lt">30<span> lts</span></div>
-        <div class="card-price">₲ 460.000</div>
-        <div class="card-reload">Recarga: <strong>₲ 450.000</strong></div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+      <div class="pack-card featured-munich">
+        <div class="pack-header munich">BARRIL MUNICH ULTRA <span>30 LTS</span></div>
+        <div class="badge badge-green" style="margin-bottom:10px">Premium</div>
+        <div class="pack-num green">1x</div>
+        <div class="pack-lts">30 litros</div>
+        <div class="pack-price">₲ 460.000</div>
+        <div class="pack-save invisible">-</div>
+        <ul class="pack-inc">
+          <li>1 Máquina de chopp</li>
+          <li>1 Barril de 30 litros</li>
+          <li>Mesa para la máquina</li>
+          <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
-        <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">Quiero reservar →</button>
+        <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="price-card dashed-card">
         <div style="font-size:40px">🍺</div>
         <div style="font-weight:800;font-size:16px">¿Evento grande?</div>
         <div style="font-size:13px;color:var(--muted);line-height:1.7">Para 5 barriles o más tenemos precios especiales.</div>
-        <button onclick="scrollToForm()" class="btn-reserve red">Solicitar precio especial →</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">Solicitar precio especial →</button>
       </div>
     </div>
 
@@ -412,41 +442,51 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
     </div>
 
     <div id="skol" class="brand-panel">
-      <div class="price-card featured">
-        <div class="card-lt">30<span> lts</span></div>
-        <div class="card-price">₲ 450.000</div>
-        <div class="card-reload">Recarga: <strong>₲ 390.000</strong></div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+      <div class="pack-card featured-skol">
+        <div class="pack-header skol">BARRIL SKOL <span>30 LTS</span></div>
+        <div class="pack-num yellow">1x</div>
+        <div class="pack-lts">30 litros</div>
+        <div class="pack-price">₲ 450.000</div>
+        <div class="pack-save invisible">-</div>
+        <ul class="pack-inc">
+          <li>1 Máquina de chopp</li>
+          <li>1 Barril de 30 litros</li>
+          <li>Mesa para la máquina</li>
+          <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
-        <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--skol-yellow);color:#1A0002" onmouseover="this.style.background='var(--skol-yellow)';this.style.color='#1A0002'" onmouseout="this.style.background='transparent';this.style.color='#1A0002'">Quiero reservar →</button>
+        <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="price-card dashed-card">
         <div style="font-size:40px">🍺</div>
         <div style="font-weight:800;font-size:16px">¿Evento grande?</div>
         <div style="font-size:13px;color:var(--muted);line-height:1.7">Para 5 barriles o más tenemos precios especiales.</div>
-        <button onclick="scrollToForm()" class="btn-reserve red">Solicitar precio especial →</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="border-color:var(--skol-yellow);color:#1A0002" onmouseover="this.style.background='var(--skol-yellow)';this.style.color='#1A0002'" onmouseout="this.style.background='transparent';this.style.color='#1A0002'">Solicitar precio especial →</button>
       </div>
     </div>
 
     <div id="stella" class="brand-panel">
-      <div class="price-card featured">
-        <div class="badge badge-red">Premium belga</div>
-        <div class="card-lt">20<span> lts</span></div>
-        <div class="card-price">₲ 550.000</div>
-        <div class="card-reload" style="color:var(--muted)">Consultá disponibilidad de recarga</div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>1 Barril de 20 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+      <div class="pack-card featured-stella">
+        <div class="pack-header stella">BARRIL STELLA ARTOIS <span>20 LTS</span></div>
+        <div class="badge" style="background:#F5E6E6;color:var(--stella-burg);margin-bottom:10px">Premium belga</div>
+        <div class="pack-num burg">1x</div>
+        <div class="pack-lts">20 litros</div>
+        <div class="pack-price">₲ 550.000</div>
+        <div class="pack-save invisible">-</div>
+        <ul class="pack-inc">
+          <li>1 Máquina de chopp</li>
+          <li>1 Barril de 20 litros</li>
+          <li>Mesa para la máquina</li>
+          <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
-        <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--stella-burg);color:var(--stella-burg)" onmouseover="this.style.background='var(--stella-burg)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--stella-burg)'">Quiero reservar →</button>
+        <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="price-card dashed-card">
         <div style="font-size:40px">🌟</div>
         <div style="font-weight:800;font-size:16px">Evento exclusivo</div>
         <div style="font-size:13px;color:var(--muted);line-height:1.7">La cerveza premium belga para eventos que merecen lo mejor.</div>
-        <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="border-color:var(--stella-burg);color:var(--stella-burg)" onmouseover="this.style.background='var(--stella-burg)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--stella-burg)'">Quiero reservar →</button>
       </div>
     </div>
   </div>

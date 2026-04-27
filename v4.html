@@ -218,16 +218,23 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .reveal{opacity:0;transform:translateY(28px);transition:.55s ease}
 .reveal.show{opacity:1;transform:none}
 
-/* VS COMPARE — Pilsen */
-.brand-panel.vs-panel.active{display:block}
-.vs-compare{display:flex;flex-direction:column}
-.vs-divider{display:flex;align-items:center;justify-content:center;padding:16px 0}
-.vs-circle{width:44px;height:44px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--muted);flex-shrink:0}
-@media(min-width:601px){
-  .vs-compare{flex-direction:row;align-items:stretch}
-  .vs-compare .price-card{flex:1}
-  .vs-divider{flex-direction:column;padding:0 20px}
-}
+/* PILSEN PACKS */
+.brand-panel.pilsen-panel.active{display:block}
+.pilsen-packs{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:601px){.pilsen-packs{grid-template-columns:repeat(3,1fr)}}
+.pack-card{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:24px;text-align:center;transition:.3s;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+.pack-card:hover{border-color:rgba(232,28,35,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,28,35,0.1)}
+.pack-card.pack-featured{border-color:var(--red)}
+.pack-card.pack-featured::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.pack-num{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--red)}
+.pack-unit{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.pack-lts{font-size:13px;color:var(--muted);margin-bottom:10px}
+.pack-price{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--text);margin-bottom:6px}
+.pack-save{font-size:11px;font-weight:700;color:#059669;background:#ECFDF5;padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:16px}
+.pack-save.invisible{visibility:hidden}
+.pack-inc{list-style:none;margin-bottom:18px;width:100%;text-align:left}
+.pack-inc li{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid #F3F4F6;display:flex;align-items:center;gap:6px}
+.pack-inc li::before{content:"✓";color:var(--red);font-weight:800;font-size:11px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -315,7 +322,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="badge badge-red">⭐ Más popular</div>
         <div class="card-lt">50<span> lts</span></div>
         <div class="card-price">₲ 600.000</div>
-        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
+        <div class="card-reload">Recarga 30L: <strong>₲ 350.000</strong> · Recarga 50L: <strong>₲ 550.000</strong></div>
         <ul class="card-inc">
           <li>1 Máquina de chopp</li><li>1 Barril de 50 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
         </ul>
@@ -344,37 +351,62 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
       </div>
     </div>
 
-    <div id="pilsen" class="brand-panel vs-panel active">
-      <div class="vs-compare">
-        <div class="price-card">
-          <div class="badge" style="background:#F3F4F6;color:var(--muted)">Munich Original 50L</div>
-          <div class="card-lt">50<span> lts</span></div>
-          <div class="card-price">₲ 600.000</div>
-          <ul class="card-inc">
+    <div id="pilsen" class="brand-panel pilsen-panel active">
+      <div class="pilsen-packs">
+
+        <!-- 1 barril -->
+        <div class="pack-card">
+          <div class="pack-num">1</div>
+          <div class="pack-unit">barril</div>
+          <div class="pack-lts">30 litros</div>
+          <div class="pack-price">₲ 400.000</div>
+          <div class="pack-save invisible">-</div>
+          <ul class="pack-inc">
             <li>1 Máquina de chopp</li>
-            <li>1 Barril de 50 litros</li>
+            <li>1 Barril de 30 litros</li>
             <li>Mesa para la máquina</li>
             <li>25 vasos de plástico</li>
           </ul>
-          <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
-          <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+          <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%">Quiero reservar →</button>
+          <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
         </div>
-        <div class="vs-divider"><div class="vs-circle">VS</div></div>
-        <div class="price-card featured">
-          <div class="badge badge-green">🏆 MEJOR OPCIÓN</div>
-          <div class="card-lt">60<span> lts</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2 barriles Pilsen 30L — <strong style="color:var(--red)">10 litros de regalo</strong></div>
-          <div class="card-price">₲ 600.000</div>
-          <div class="card-reload">Mismo precio, <strong>más chopp</strong></div>
-          <ul class="card-inc">
+
+        <!-- 2 barriles -->
+        <div class="pack-card pack-featured">
+          <div class="badge badge-green" style="margin-bottom:10px">🏆 MÁS POPULAR</div>
+          <div class="pack-num">2</div>
+          <div class="pack-unit">barriles</div>
+          <div class="pack-lts">60 litros</div>
+          <div class="pack-price">₲ 600.000</div>
+          <div class="pack-save">Ahorrás ₲ 200.000</div>
+          <ul class="pack-inc">
             <li>1 Máquina de chopp</li>
             <li>2 Barriles de 30 litros</li>
             <li>Mesa para la máquina</li>
             <li>25 vasos de plástico</li>
           </ul>
-          <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
-          <div class="card-note">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+          <button onclick="scrollToForm()" class="btn-reserve red" style="width:100%">Quiero reservar →</button>
+          <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
         </div>
+
+        <!-- 3 barriles -->
+        <div class="pack-card">
+          <div class="badge badge-red" style="margin-bottom:10px">🔥 MEJOR VALOR</div>
+          <div class="pack-num">3</div>
+          <div class="pack-unit">barriles</div>
+          <div class="pack-lts">90 litros</div>
+          <div class="pack-price">₲ 850.000</div>
+          <div class="pack-save">Ahorrás ₲ 350.000</div>
+          <ul class="pack-inc">
+            <li>1 Máquina de chopp</li>
+            <li>3 Barriles de 30 litros</li>
+            <li>Mesa para la máquina</li>
+            <li>25 vasos de plástico</li>
+          </ul>
+          <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%">Quiero reservar →</button>
+          <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
+        </div>
+
       </div>
     </div>
 

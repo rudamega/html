@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Chopp Paraguay — Delivery de Chopp</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#E81C23;--red2:#C4151B;--red-light:#FFF1F1;--dark:#1A0002;
+  --white:#FFFFFF;--off:#F8F8F8;--text:#1A0002;--muted:#6B7280;--border:#F0E0E0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--red)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--red);letter-spacing:3px;text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.5px;transition:.2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:var(--white)!important;padding:10px 22px;border-radius:100px;font-weight:700!important;transition:.2s!important;box-shadow:0 4px 16px rgba(232,28,35,0.3)}
+.nav-cta:hover{background:var(--red2)!important;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--white);position:relative;overflow:hidden}
+.hero-red-block{position:absolute;top:0;right:0;width:45%;height:100%;background:var(--red);clip-path:polygon(12% 0,100% 0,100% 100%,0% 100%)}
+.hero-pattern{position:absolute;top:0;right:0;width:45%;height:100%;opacity:0.06;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:12px 12px}
+.hero-inner{max-width:1100px;margin:0 auto;padding:100px 40px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--red-light);border:1px solid rgba(232,28,35,0.2);color:var(--red);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;animation:fadeUp .6s .1s both}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,100px);line-height:.88;color:var(--text);margin-bottom:20px;animation:fadeUp .6s .3s both}
+.hero-h1 em{color:var(--red);font-style:normal;display:block}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:36px;animation:fadeUp .6s .5s both;max-width:440px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .6s .7s both}
+.btn-red{background:var(--red);color:var(--white);padding:16px 32px;border-radius:100px;font-size:14px;font-weight:800;text-decoration:none;transition:.25s;box-shadow:0 6px 20px rgba(232,28,35,0.35)}
+.btn-red:hover{background:var(--red2);transform:translateY(-3px);box-shadow:0 10px 28px rgba(232,28,35,0.45)}
+.btn-outline{background:transparent;color:var(--text);padding:16px 32px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;border:2px solid var(--border);transition:.25s}
+.btn-outline:hover{border-color:var(--red);color:var(--red)}
+.hero-stats{display:flex;gap:32px;margin-top:48px;animation:fadeUp .6s .9s both;flex-wrap:wrap}
+.hstat{text-align:center;background:var(--off);border-radius:16px;padding:16px 24px;border:1px solid var(--border)}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--red);line-height:1}
+.hstat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.hero-right{animation:fadeUp .6s .5s both}
+.trust-card{background:var(--white);border-radius:24px;padding:32px;box-shadow:0 20px 60px rgba(232,28,35,0.15);border:1px solid var(--border)}
+.trust-card h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red);letter-spacing:1px;margin-bottom:20px}
+.trust-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.trust-item:last-of-type{border-bottom:none;margin-bottom:8px}
+.t-icon{width:42px;height:42px;border-radius:12px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.t-text strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.t-text span{font-size:12px;color:var(--muted);line-height:1.5}
+.trust-cta{display:block;background:var(--red);color:var(--white);text-align:center;padding:15px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none;transition:.2s;box-shadow:0 4px 16px rgba(232,28,35,0.3)}
+.trust-cta:hover{background:var(--red2);transform:translateY(-2px)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:720px){.hero-inner{grid-template-columns:1fr}.hero-right{display:none}.hero-red-block{display:none}nav{padding:12px 16px}.nav-links a:not(.nav-cta){display:none}}
+
+.red-bar{height:6px;background:linear-gradient(90deg,var(--red),#FF6B6B,var(--red))}
+
+/* BRANDS */
+.brands-section{padding:80px 20px;background:var(--off)}
+.brands-inner{max-width:1060px;margin:0 auto}
+.sec-eye{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);line-height:1;color:var(--text);margin-bottom:40px}
+.sec-title span{color:var(--red)}
+.brand-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.brand-tab{padding:10px 22px;border-radius:100px;border:2px solid var(--border);font-size:13px;font-weight:700;cursor:pointer;transition:.2s;background:var(--white);color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif}
+.brand-tab:hover{border-color:var(--red);color:var(--red)}
+.brand-tab.active{background:var(--red);color:var(--white);border-color:var(--red)}
+.brand-panel{display:none;animation:panelIn .3s ease}
+.brand-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.brand-panel.active{grid-template-columns:1fr}}
+
+.price-card{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:28px;transition:.3s;position:relative;overflow:hidden}
+.price-card:hover{border-color:rgba(232,28,35,0.4);box-shadow:0 12px 40px rgba(232,28,35,0.1);transform:translateY(-4px)}
+.price-card.featured{border-color:var(--red)}
+.price-card.featured::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:100px;margin-bottom:14px;text-transform:uppercase}
+.badge-red{background:var(--red-light);color:var(--red)}
+.badge-green{background:#ECFDF5;color:#059669}
+.card-lt{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--red);line-height:1}
+.card-lt span{font-size:22px;color:var(--muted)}
+.card-price{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--text);margin:6px 0 4px}
+.card-reload{font-size:12px;color:var(--muted);margin-bottom:16px}
+.card-reload strong{color:var(--red)}
+.card-inc{list-style:none;margin-bottom:20px}
+.card-inc li{font-size:13px;color:var(--muted);padding:6px 0;border-bottom:1px solid #F3F4F6;display:flex;align-items:center;gap:8px}
+.card-inc li::before{content:"✓";color:var(--red);font-weight:800;font-size:12px;flex-shrink:0}
+.btn-reserve{display:block;padding:14px;border-radius:12px;font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;text-align:center;text-decoration:none;transition:.25s;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;border:none;width:100%}
+.btn-reserve.red{background:var(--red);color:var(--white);box-shadow:0 4px 16px rgba(232,28,35,0.3)}
+.btn-reserve.red:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,28,35,0.4)}
+.btn-reserve.outline{background:transparent;color:var(--red);border:2px solid var(--red)}
+.btn-reserve.outline:hover{background:var(--red);color:var(--white)}
+.card-note{margin-top:12px;font-size:11px;color:var(--muted);text-align:center;padding:8px;background:var(--off);border-radius:8px}
+.dashed-card{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:12px;border-style:dashed!important;border-color:#DDD!important;background:var(--off)!important}
+.dashed-card:hover{border-color:var(--red)!important}
+
+/* STEPS */
+.steps-section{padding:80px 20px;background:var(--white)}
+.steps-inner{max-width:960px;margin:0 auto;text-align:center}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:48px}
+.step{padding:32px 20px;border-radius:20px;background:var(--off);border:2px solid transparent;transition:.3s}
+.step:hover{border-color:var(--red);background:var(--white);box-shadow:0 8px 32px rgba(232,28,35,0.1)}
+.step-num{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.step-icon{font-size:36px;margin-bottom:12px}
+.step-title{font-weight:800;font-size:15px;color:var(--text);margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* FORM SECTION */
+.form-section{padding:80px 20px;background:var(--dark);position:relative;overflow:hidden}
+.form-section::before{content:'RESERVÁ';font-family:'Bebas Neue',sans-serif;font-size:180px;color:rgba(232,28,35,0.05);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:8px}
+.form-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.form-header{text-align:center;margin-bottom:48px}
+.form-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);color:var(--white);line-height:1}
+.form-title span{color:var(--red)}
+.form-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-top:10px}
+
+.steps-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px;flex-wrap:nowrap}
+.step-dot{display:flex;flex-direction:column;align-items:center;gap:6px}
+.step-dot-circle{width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);transition:.3s}
+.step-dot.active .step-dot-circle{border-color:var(--red);background:var(--red);color:var(--white)}
+.step-dot.done .step-dot-circle{border-color:var(--red);background:var(--red);color:var(--white)}
+.step-dot-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.step-dot.active .step-dot-label{color:var(--white)}
+.step-dot.done .step-dot-label{color:var(--red)}
+.step-line{width:50px;height:2px;background:rgba(255,255,255,0.1);margin-bottom:18px;transition:.3s;flex-shrink:0}
+.step-line.done{background:var(--red)}
+
+.form-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:36px;backdrop-filter:blur(10px)}
+.form-step{display:none}
+.form-step.active{display:block;animation:stepIn .3s ease}
+@keyframes stepIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+.step-title-text{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:6px;letter-spacing:1px}
+.step-subtitle{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:28px}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-grid.single{grid-template-columns:1fr}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px}
+.field input,.field select,.field textarea{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;transition:.2s;outline:none;width:100%}
+.field input::placeholder{color:rgba(255,255,255,0.25)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red);background:rgba(232,28,35,0.08)}
+.field select option{background:#1A0002;color:var(--white)}
+.field textarea{resize:vertical;min-height:100px}
+.field-error{font-size:11px;color:#FF6B6B;margin-top:2px;display:none}
+.field.has-error .field-error{display:block}
+.field.has-error input,.field.has-error select{border-color:#FF6B6B}
+
+.radio-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.radio-card{position:relative}
+.radio-card input{position:absolute;opacity:0;width:0;height:0}
+.radio-card label{display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid rgba(255,255,255,0.12);border-radius:12px;cursor:pointer;transition:.2s;font-size:13px;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.04)}
+.radio-card input:checked + label{border-color:var(--red);background:rgba(232,28,35,0.12);color:var(--white)}
+.radio-card label:hover{border-color:rgba(232,28,35,0.4)}
+.radio-icon{font-size:18px}
+
+.marca-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.marca-card{position:relative}
+.marca-card input{position:absolute;opacity:0;width:0;height:0}
+.marca-card label{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 10px;border:2px solid rgba(255,255,255,0.1);border-radius:14px;cursor:pointer;transition:.2s;font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center;background:rgba(255,255,255,0.03)}
+.marca-card input:checked + label{border-color:var(--red);background:rgba(232,28,35,0.15);color:var(--white)}
+.marca-card label:hover{border-color:rgba(232,28,35,0.4)}
+.marca-emoji{font-size:24px}
+
+.ciudad-select{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.ciudad-btn{padding:10px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;cursor:pointer;transition:.2s;text-align:center;font-family:'Plus Jakarta Sans',sans-serif;border:1px solid rgba(255,255,255,0.1)}
+.ciudad-btn:hover{border-color:rgba(232,28,35,0.4);color:rgba(255,255,255,0.8)}
+.ciudad-btn.selected{border-color:var(--red);background:rgba(232,28,35,0.15);color:var(--white)}
+
+.hora-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.hora-btn{padding:12px 20px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.hora-btn:hover{border-color:rgba(232,28,35,0.4);color:rgba(255,255,255,0.8)}
+.hora-btn.selected{border-color:var(--red);background:rgba(232,28,35,0.15);color:var(--white)}
+
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px}
+.btn-back{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:14px 28px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-back:hover{border-color:rgba(255,255,255,0.4);color:var(--white)}
+.btn-next{background:var(--red);color:var(--white);padding:14px 36px;border-radius:100px;font-size:13px;font-weight:800;cursor:pointer;transition:.2s;border:none;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 4px 16px rgba(232,28,35,0.4)}
+.btn-next:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-submit{background:var(--red);color:var(--white);padding:16px 40px;border-radius:100px;font-size:14px;font-weight:800;cursor:pointer;transition:.2s;border:none;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 4px 16px rgba(232,28,35,0.4)}
+.btn-submit:hover{background:var(--red2);transform:translateY(-2px)}
+
+.progress-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-bottom:32px;overflow:hidden}
+.progress-fill{height:100%;background:var(--red);border-radius:2px;transition:.4s ease}
+
+.success-state{text-align:center;padding:40px 20px;display:none}
+.success-state.show{display:block;animation:stepIn .4s ease}
+.success-icon{font-size:64px;margin-bottom:16px}
+.success-title{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);margin-bottom:8px}
+.success-sub{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7}
+
+.resumen-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.resumen-item{background:rgba(255,255,255,0.05);border-radius:12px;padding:14px}
+.resumen-label{font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:4px}
+.resumen-value{font-size:14px;color:var(--white);font-weight:600}
+@media(max-width:500px){.resumen-grid{grid-template-columns:1fr}}
+
+/* CTA BANNER */
+.cta-banner{background:var(--red);padding:72px 20px;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'CHOPP';font-family:'Bebas Neue',sans-serif;font-size:200px;color:rgba(255,255,255,0.06);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:10px}
+.cta-banner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,68px);color:var(--white);margin-bottom:12px;position:relative}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:32px;position:relative}
+.btn-white{display:inline-block;background:var(--white);color:var(--red);padding:18px 40px;border-radius:100px;font-size:15px;font-weight:800;text-decoration:none;transition:.25s;box-shadow:0 8px 24px rgba(0,0,0,0.2);position:relative}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.25)}
+
+/* FOOTER */
+footer{background:var(--dark);padding:40px 20px;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--red);letter-spacing:4px;margin-bottom:8px}
+.footer-info{font-size:13px;color:rgba(255,255,255,0.45);line-height:2}
+.footer-info a{color:#FF6B6B;text-decoration:none}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);margin-top:20px;letter-spacing:1px}
+
+.reveal{opacity:0;transform:translateY(28px);transition:.55s ease}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">MEGA CHOPP</a>
+  <div class="nav-links">
+    <a href="#precios">Precios</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#reserva" class="nav-cta">Quiero reservar →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-red-block"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">🍺 Delivery en Asunción</div>
+      <h1 class="hero-h1">CHOPP FRÍO<em>EN TU PUERTA</em></h1>
+      <p class="hero-sub">Máquina, barril y mesa hasta tu domicilio o evento. Munich, Pilsen, Skol y Stella Artois.</p>
+      <div class="hero-btns">
+        <a href="#precios" class="btn-red">Ver precios →</a>
+        <a href="#como-funciona" class="btn-outline">¿Cómo funciona?</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n">10K+</div><div class="hstat-l">Servicios</div></div>
+        <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">Marcas</div></div>
+        <div class="hstat"><div class="hstat-n">2018</div><div class="hstat-l">Desde</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="trust-card">
+        <h3>¿Por qué elegirnos?</h3>
+        <div class="trust-item">
+          <div class="t-icon">🚚</div>
+          <div class="t-text"><strong>Delivery completo</strong><span>Llevamos todo — máquina, barril, mesa y vasos.</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">❄️</div>
+          <div class="t-text"><strong>Siempre bien frío</strong><span>Equipo refrigerado para que llegue en temperatura.</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">⭐</div>
+          <div class="t-text"><strong>+10.000 servicios</strong><span>Los favoritos de Asunción desde 2018.</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">💰</div>
+          <div class="t-text"><strong>Precio especial x5+</strong><span>A partir de 5 barriles consultá tu descuento.</span></div>
+        </div>
+        <a href="#reserva" class="trust-cta">Quiero reservar mi chopp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="red-bar"></div>
+
+<!-- PRECIOS -->
+<section id="precios" class="brands-section">
+  <div class="brands-inner reveal">
+    <div class="sec-eye">Nuestros productos</div>
+    <h2 class="sec-title">ELEGÍ TU<br><span>CHOPP</span></h2>
+    <div class="brand-tabs">
+      <button class="brand-tab active" onclick="showBrand('munich-orig',this)">Munich Original</button>
+      <button class="brand-tab" onclick="showBrand('munich-ultra',this)">Munich Ultra</button>
+      <button class="brand-tab" onclick="showBrand('pilsen',this)">Pilsen</button>
+      <button class="brand-tab" onclick="showBrand('skol',this)">Skol</button>
+      <button class="brand-tab" onclick="showBrand('stella',this)">Stella Artois</button>
+    </div>
+
+    <div id="munich-orig" class="brand-panel active">
+      <div class="price-card">
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 400.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
+      </div>
+      <div class="price-card featured">
+        <div class="badge badge-red">⭐ Más popular</div>
+        <div class="card-lt">50<span> lts</span></div>
+        <div class="card-price">₲ 600.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 50 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+    </div>
+
+    <div id="munich-ultra" class="brand-panel">
+      <div class="price-card featured">
+        <div class="badge badge-red">Premium</div>
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 460.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 450.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+      <div class="price-card dashed-card">
+        <div style="font-size:40px">🍺</div>
+        <div style="font-weight:800;font-size:16px">¿Evento grande?</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">Para 5 barriles o más tenemos precios especiales.</div>
+        <button onclick="scrollToForm()" class="btn-reserve red">Solicitar precio especial →</button>
+      </div>
+    </div>
+
+    <div id="pilsen" class="brand-panel">
+      <div class="price-card">
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 400.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 280.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
+      </div>
+      <div class="price-card featured">
+        <div class="badge badge-green">🎁 +10 litros de REGALO</div>
+        <div class="card-lt">60<span> lts</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2 barriles de 30L — pagás solo 50L</div>
+        <div class="card-price">₲ 600.000</div>
+        <div class="card-reload">Recarga 30L: <strong>₲ 280.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>2 Barriles de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+    </div>
+
+    <div id="skol" class="brand-panel">
+      <div class="price-card featured">
+        <div class="card-lt">30<span> lts</span></div>
+        <div class="card-price">₲ 450.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 390.000</strong></div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+      <div class="price-card dashed-card">
+        <div style="font-size:40px">🍺</div>
+        <div style="font-weight:800;font-size:16px">¿Evento grande?</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">Para 5 barriles o más tenemos precios especiales.</div>
+        <button onclick="scrollToForm()" class="btn-reserve red">Solicitar precio especial →</button>
+      </div>
+    </div>
+
+    <div id="stella" class="brand-panel">
+      <div class="price-card featured">
+        <div class="badge badge-red">Premium belga</div>
+        <div class="card-lt">20<span> lts</span></div>
+        <div class="card-price">₲ 550.000</div>
+        <div class="card-reload" style="color:var(--muted)">Consultá disponibilidad de recarga</div>
+        <ul class="card-inc">
+          <li>1 Máquina de chopp</li><li>1 Barril de 20 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
+        </ul>
+        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
+        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+      </div>
+      <div class="price-card dashed-card">
+        <div style="font-size:40px">🌟</div>
+        <div style="font-weight:800;font-size:16px">Evento exclusivo</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">La cerveza premium belga para eventos que merecen lo mejor.</div>
+        <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" class="steps-section">
+  <div class="steps-inner reveal">
+    <div class="sec-eye">Simple y rápido</div>
+    <h2 class="sec-title">¿CÓMO<br><span style="color:var(--red)">FUNCIONA?</span></h2>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">Paso 01</div><div class="step-icon">🍺</div><div class="step-title">Elegí tu marca</div><div class="step-desc">Munich, Pilsen, Skol o Stella. El chopp que más te gusta para tu evento.</div></div>
+      <div class="step"><div class="step-num">Paso 02</div><div class="step-icon">📋</div><div class="step-title">Completá el formulario</div><div class="step-desc">Llenás tus datos, fecha, lugar y tu pedido. Todo en un solo paso.</div></div>
+      <div class="step"><div class="step-num">Paso 03</div><div class="step-icon">✅</div><div class="step-title">Confirmamos</div><div class="step-desc">Revisamos tu solicitud y te confirmamos la disponibilidad.</div></div>
+      <div class="step"><div class="step-num">Paso 04</div><div class="step-icon">🎉</div><div class="step-title">¡A disfrutar!</div><div class="step-desc">Llegamos con todo el equipo. Vos solo disfrutás.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO -->
+<section id="reserva" class="form-section">
+  <div class="form-inner">
+    <div class="form-header">
+      <div class="form-eyebrow">Reserva online</div>
+      <h2 class="form-title">SOLICITÁ TU<br><span>CHOPP</span></h2>
+      <p class="form-sub">Completá el formulario y te confirmamos en seguida</p>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:25%"></div></div>
+
+    <div class="steps-indicator">
+      <div class="step-dot active" id="dot1"><div class="step-dot-circle">1</div><div class="step-dot-label">Tu info</div></div>
+      <div class="step-line" id="line1"></div>
+      <div class="step-dot" id="dot2"><div class="step-dot-circle">2</div><div class="step-dot-label">El evento</div></div>
+      <div class="step-line" id="line2"></div>
+      <div class="step-dot" id="dot3"><div class="step-dot-circle">3</div><div class="step-dot-label">Tu pedido</div></div>
+      <div class="step-line" id="line3"></div>
+      <div class="step-dot" id="dot4"><div class="step-dot-circle">4</div><div class="step-dot-label">Confirmar</div></div>
+    </div>
+
+    <div class="form-card">
+
+      <!-- STEP 1 -->
+      <div class="form-step active" id="step1">
+        <div class="step-title-text">Tus datos</div>
+        <div class="step-subtitle">Necesitamos identificarte para confirmar la reserva</div>
+        <div class="form-grid">
+          <div class="field" id="f-nombre"><label>Nombre completo *</label><input type="text" id="nombre" placeholder="Ej: Juan Pérez"><span class="field-error">Este campo es obligatorio</span></div>
+          <div class="field" id="f-ci"><label>CI Nro. *</label><input type="text" id="ci" placeholder="Ej: 4.500.000"><span class="field-error">Este campo es obligatorio</span></div>
+        </div>
+        <div class="form-grid single">
+          <div class="field" id="f-whatsapp"><label>WhatsApp *</label><input type="tel" id="whatsapp" placeholder="Ej: 0994 000 000"><span class="field-error">Este campo es obligatorio</span></div>
+        </div>
+        <div class="field" style="margin-bottom:8px"><label>¿Necesitás factura?</label>
+          <div class="radio-cards">
+            <div class="radio-card"><input type="radio" name="factura" id="fac-no" value="NO" checked><label for="fac-no"><span class="radio-icon">🧾</span>No</label></div>
+            <div class="radio-card"><input type="radio" name="factura" id="fac-si" value="SI"><label for="fac-si"><span class="radio-icon">📄</span>Sí</label></div>
+          </div>
+        </div>
+        <div id="factura-fields" style="display:none;margin-top:12px">
+          <div class="form-grid">
+            <div class="field"><label>Razón Social</label><input type="text" id="razon-social" placeholder="Nombre empresa"></div>
+            <div class="field"><label>RUC</label><input type="text" id="ruc" placeholder="Ej: 80000000-0"></div>
+          </div>
+        </div>
+        <div class="form-nav"><div></div><button class="btn-next" onclick="nextStep(1)">Siguiente →</button></div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="form-step" id="step2">
+        <div class="step-title-text">El evento</div>
+        <div class="step-subtitle">Contanos dónde y cuándo es</div>
+        <div class="field" style="margin-bottom:6px"><label>Ciudad del evento *</label></div>
+        <div class="ciudad-select" id="ciudadSelect">
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Asunción')">Asunción</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Fernando de la Mora')">Fernando de la Mora</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Villa Elisa')">Villa Elisa</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Lambaré')">Lambaré</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Sajonia')">Sajonia</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'San Lorenzo')">San Lorenzo</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Luque')">Luque</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'M. R. Alonso')">M. R. Alonso</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Ñemby')">Ñemby</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'San Antonio')">San Antonio</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Limpio')">Limpio</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Ypané')">Ypané</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Capiatá')">Capiatá</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'San Bernardino')">San Bernardino</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Areguá')">Areguá</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'Loma Pyta')">Loma Pyta</div>
+          <div class="ciudad-btn" onclick="selectCiudad(this,'otra')">Otra ciudad...</div>
+        </div>
+        <input type="text" id="otraCiudad" placeholder="¿Cuál ciudad?" style="display:none;margin-top:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 16px;font-size:14px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;width:100%;outline:none">
+        <input type="hidden" id="ciudadValue">
+        <div class="form-grid" style="margin-top:16px">
+          <div class="field" id="f-fecha"><label>Fecha del evento *</label><input type="date" id="fecha"><span class="field-error">Seleccioná una fecha</span></div>
+          <div class="field" id="f-invitados"><label>Cantidad de invitados *</label><input type="number" id="invitados" placeholder="Ej: 50" min="1"><span class="field-error">Este campo es obligatorio</span></div>
+        </div>
+        <div class="field" style="margin-bottom:8px;margin-top:4px"><label>Hora de arranque *</label></div>
+        <div class="hora-btns" id="horaSelect">
+          <button class="hora-btn" onclick="selectHora(this,'Mediodía')">☀️ Mediodía</button>
+          <button class="hora-btn" onclick="selectHora(this,'Tarde')">🌤 Tarde</button>
+          <button class="hora-btn" onclick="selectHora(this,'Noche')">🌙 Noche</button>
+        </div>
+        <input type="hidden" id="horaValue">
+        <div class="field" style="margin-top:16px;margin-bottom:8px"><label>Lugar del evento *</label></div>
+        <div class="radio-cards" style="grid-template-columns:1fr 1fr">
+          <div class="radio-card"><input type="radio" name="lugar" id="l1" value="Casa particular"><label for="l1"><span class="radio-icon">🏠</span>Casa particular</label></div>
+          <div class="radio-card"><input type="radio" name="lugar" id="l2" value="Terraza con ascensor"><label for="l2"><span class="radio-icon">🏢</span>Terraza c/ ascensor</label></div>
+          <div class="radio-card"><input type="radio" name="lugar" id="l3" value="Terraza sin ascensor"><label for="l3"><span class="radio-icon">🪜</span>Terraza s/ ascensor</label></div>
+          <div class="radio-card"><input type="radio" name="lugar" id="l4" value="Salón de eventos"><label for="l4"><span class="radio-icon">🎊</span>Salón de eventos</label></div>
+          <div class="radio-card"><input type="radio" name="lugar" id="l5" value="Quinta alquilada"><label for="l5"><span class="radio-icon">🌿</span>Quinta alquilada</label></div>
+          <div class="radio-card"><input type="radio" name="lugar" id="l6" value="Empresa"><label for="l6"><span class="radio-icon">🏛</span>Empresa</label></div>
+        </div>
+        <input type="hidden" id="lugarValue">
+        <div class="form-nav"><button class="btn-back" onclick="prevStep(2)">← Atrás</button><button class="btn-next" onclick="nextStep(2)">Siguiente →</button></div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="form-step" id="step3">
+        <div class="step-title-text">Tu pedido</div>
+        <div class="step-subtitle">¿Qué chopp querés para tu evento?</div>
+        <div class="field" style="margin-bottom:10px"><label>Marca *</label></div>
+        <div class="marca-cards">
+          <div class="marca-card"><input type="radio" name="marca" id="m1" value="Munich Original"><label for="m1"><span class="marca-emoji">🍺</span>Munich Original</label></div>
+          <div class="marca-card"><input type="radio" name="marca" id="m2" value="Munich Ultra"><label for="m2"><span class="marca-emoji">⭐</span>Munich Ultra</label></div>
+          <div class="marca-card"><input type="radio" name="marca" id="m3" value="Pilsen"><label for="m3"><span class="marca-emoji">🏆</span>Pilsen</label></div>
+          <div class="marca-card"><input type="radio" name="marca" id="m4" value="Skol"><label for="m4"><span class="marca-emoji">🌟</span>Skol</label></div>
+          <div class="marca-card"><input type="radio" name="marca" id="m5" value="Stella Artois"><label for="m5"><span class="marca-emoji">💎</span>Stella Artois</label></div>
+        </div>
+        <div class="form-grid">
+          <div class="field" id="f-pedido"><label>Detalle del pedido *</label><input type="text" id="pedido" placeholder="Ej: 1 barril Munich 30L"><span class="field-error">Describí tu pedido</span></div>
+          <div class="field"><label>¿Barriles a consignación?</label>
+            <div class="radio-cards">
+              <div class="radio-card"><input type="radio" name="consignacion" id="c-no" value="NO" checked><label for="c-no"><span class="radio-icon">❌</span>No</label></div>
+              <div class="radio-card"><input type="radio" name="consignacion" id="c-si" value="SI"><label for="c-si"><span class="radio-icon">✅</span>Sí</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-grid single">
+          <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
+        </div>
+        <div class="form-nav"><button class="btn-back" onclick="prevStep(3)">← Atrás</button><button class="btn-next" onclick="nextStep(3)">Ver resumen →</button></div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="form-step" id="step4">
+        <div class="step-title-text">Confirmá tu reserva</div>
+        <div class="step-subtitle">Revisá los datos antes de enviar</div>
+        <div class="resumen-grid" id="resumenGrid"></div>
+        <div class="form-nav"><button class="btn-back" onclick="prevStep(4)">← Editar</button><button class="btn-submit" onclick="submitForm()">💬 Confirmar por WhatsApp</button></div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-state" id="successState">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">¡SOLICITUD ENVIADA!</div>
+        <p class="success-sub">Ya registramos tu pedido. Ahora abrimos WhatsApp para que puedas confirmar con nuestro equipo.<br><br>Si no se abrió automáticamente, escribinos al <strong style="color:#FF6B6B">0994 80 80 80</strong></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MEGA CHOPP</div>
+  <div class="footer-info">
+    Mariscal López, entre Mateo Estigarribia e Insaulrralde · Asunción, Paraguay<br>
+    <a href="tel:+595994808080">+595 994 808 080</a> · <a href="mailto:info@megachopp.com.py">info@megachopp.com.py</a>
+  </div>
+  <div class="footer-copy">© 2025 MEGA CHOPP PARAGUAY · TODOS LOS DERECHOS RESERVADOS</div>
+</footer>
+
+<script>
+let formData = {};
+
+// Scroll to form
+function scrollToForm(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); }
+
+// Brand tabs
+function showBrand(id,btn){
+  document.querySelectorAll('.brand-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.brand-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Factura toggle
+document.querySelectorAll('input[name="factura"]').forEach(r=>{
+  r.addEventListener('change',()=>{ document.getElementById('factura-fields').style.display = r.value==='SI'?'block':'none'; });
+});
+
+// Lugar
+document.querySelectorAll('input[name="lugar"]').forEach(r=>{
+  r.addEventListener('change',()=>{ document.getElementById('lugarValue').value=r.value; });
+});
+
+// Ciudad
+function selectCiudad(btn,val){
+  document.querySelectorAll('.ciudad-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const otra=document.getElementById('otraCiudad');
+  if(val==='otra'){
+    otra.style.display='block';
+    document.getElementById('ciudadValue').value='';
+    otra.focus();
+    otra.oninput=()=>document.getElementById('ciudadValue').value=otra.value;
+  } else {
+    otra.style.display='none';
+    document.getElementById('ciudadValue').value=val;
+  }
+}
+
+// Hora
+function selectHora(btn,val){
+  document.querySelectorAll('.hora-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('horaValue').value=val;
+}
+
+// Validate
+function validateStep(step){
+  let valid=true;
+  if(step===1){
+    ['nombre','ci','whatsapp'].forEach(id=>{
+      const el=document.getElementById(id);
+      const field=document.getElementById('f-'+id)||el.closest('.field');
+      if(!el.value.trim()){el.closest('.field').classList.add('has-error');valid=false;}
+      else el.closest('.field').classList.remove('has-error');
+    });
+  }
+  if(step===2){
+    if(!document.getElementById('ciudadValue').value){alert('Por favor seleccioná una ciudad');valid=false;}
+    else if(!document.getElementById('fecha').value){document.getElementById('f-fecha').classList.add('has-error');valid=false;}
+    else if(!document.getElementById('invitados').value){document.getElementById('f-invitados').classList.add('has-error');valid=false;}
+    else if(!document.getElementById('horaValue').value){alert('Por favor seleccioná la hora de arranque');valid=false;}
+    else if(!document.getElementById('lugarValue').value){alert('Por favor seleccioná el lugar del evento');valid=false;}
+    else{document.getElementById('f-fecha').classList.remove('has-error');document.getElementById('f-invitados').classList.remove('has-error');}
+  }
+  if(step===3){
+    if(!document.querySelector('input[name="marca"]:checked')){alert('Por favor seleccioná una marca');valid=false;}
+    else if(!document.getElementById('pedido').value.trim()){document.getElementById('f-pedido').classList.add('has-error');valid=false;}
+    else document.getElementById('f-pedido').classList.remove('has-error');
+  }
+  return valid;
+}
+
+function collectData(){
+  formData={
+    nombre:document.getElementById('nombre').value,
+    ci:document.getElementById('ci').value,
+    whatsapp:document.getElementById('whatsapp').value,
+    factura:document.querySelector('input[name="factura"]:checked')?.value,
+    razonSocial:document.getElementById('razon-social').value,
+    ruc:document.getElementById('ruc').value,
+    ciudad:document.getElementById('ciudadValue').value,
+    fecha:document.getElementById('fecha').value,
+    invitados:document.getElementById('invitados').value,
+    hora:document.getElementById('horaValue').value,
+    lugar:document.getElementById('lugarValue').value,
+    marca:document.querySelector('input[name="marca"]:checked')?.value,
+    pedido:document.getElementById('pedido').value,
+    consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
+    comentarios:document.getElementById('comentarios').value,
+  };
+}
+
+function buildResumen(){
+  collectData();
+  const items=[
+    {label:'Nombre',value:formData.nombre},
+    {label:'CI',value:formData.ci},
+    {label:'WhatsApp',value:formData.whatsapp},
+    {label:'Factura',value:formData.factura},
+    {label:'Ciudad',value:formData.ciudad},
+    {label:'Fecha',value:formData.fecha},
+    {label:'Hora',value:formData.hora},
+    {label:'Invitados',value:formData.invitados},
+    {label:'Lugar',value:formData.lugar},
+    {label:'Marca',value:formData.marca},
+    {label:'Pedido',value:formData.pedido},
+    {label:'Consignación',value:formData.consignacion},
+  ];
+  document.getElementById('resumenGrid').innerHTML=items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
+}
+
+function updateIndicators(step){
+  for(let i=1;i<=4;i++){
+    const dot=document.getElementById('dot'+i);
+    dot.classList.remove('active','done');
+    if(i<step)dot.classList.add('done');
+    if(i===step)dot.classList.add('active');
+  }
+  for(let i=1;i<=3;i++) document.getElementById('line'+i).classList.toggle('done',i<step);
+  document.getElementById('progressFill').style.width=(step/4*100)+'%';
+}
+
+function nextStep(step){
+  if(!validateStep(step))return;
+  if(step===3)buildResumen();
+  document.getElementById('step'+step).classList.remove('active');
+  document.getElementById('step'+(step+1)).classList.add('active');
+  updateIndicators(step+1);
+  document.getElementById('reserva').scrollIntoView({behavior:'smooth'});
+}
+
+function prevStep(step){
+  document.getElementById('step'+step).classList.remove('active');
+  document.getElementById('step'+(step-1)).classList.add('active');
+  updateIndicators(step-1);
+}
+
+async function submitForm(){
+  collectData();
+
+  // Conectar webhook n8n — reemplazar URL abajo
+  // const WEBHOOK_URL = 'TU_WEBHOOK_N8N_AQUI';
+  // try {
+  //   await fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(formData) });
+  // } catch(e) { console.error(e); }
+
+  // Mostrar success
+  document.getElementById('step4').classList.remove('active');
+  document.getElementById('successState').classList.add('show');
+  document.getElementById('progressFill').style.width='100%';
+
+  // Abrir WhatsApp con mensaje pre-cargado
+  const msg = encodeURIComponent('Hola 🍺🎉🙌 realicé mi solicitud de servicio de chopp por la web. Me pueden confirmar si mi servicio está confirmado?');
+  setTimeout(() => { window.open('https://wa.me/595994808080?text=' + msg, '_blank'); }, 800);
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

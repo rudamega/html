@@ -226,8 +226,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .pack-card:hover{border-color:rgba(232,28,35,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,28,35,0.1)}
 .pack-card.pack-featured{border-color:var(--red)}
 .pack-card.pack-featured::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.pack-header{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--white);background:var(--red);padding:10px 16px;border-radius:10px;margin-bottom:16px;width:100%;text-align:center}
+.pack-header span{opacity:.8}
 .pack-num{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--red)}
-.pack-unit{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
 .pack-lts{font-size:13px;color:var(--muted);margin-bottom:10px}
 .pack-price{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--text);margin-bottom:6px}
 .pack-save{font-size:11px;font-weight:700;color:#059669;background:#ECFDF5;padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:16px}
@@ -356,8 +357,8 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
         <!-- 1 barril -->
         <div class="pack-card">
-          <div class="pack-num">1</div>
-          <div class="pack-unit">barril</div>
+          <div class="pack-header">BARRIL PILSEN <span>30 LTS</span></div>
+          <div class="pack-num">1x</div>
           <div class="pack-lts">30 litros</div>
           <div class="pack-price">₲ 400.000</div>
           <div class="pack-save invisible">-</div>
@@ -373,9 +374,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
         <!-- 2 barriles -->
         <div class="pack-card pack-featured">
+          <div class="pack-header">BARRIL PILSEN <span>30 LTS</span></div>
           <div class="badge badge-green" style="margin-bottom:10px">🏆 MÁS POPULAR</div>
-          <div class="pack-num">2</div>
-          <div class="pack-unit">barriles</div>
+          <div class="pack-num">2x</div>
           <div class="pack-lts">60 litros</div>
           <div class="pack-price">₲ 600.000</div>
           <div class="pack-save">Ahorrás ₲ 200.000</div>
@@ -391,9 +392,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
         <!-- 3 barriles -->
         <div class="pack-card">
+          <div class="pack-header">BARRIL PILSEN <span>30 LTS</span></div>
           <div class="badge badge-red" style="margin-bottom:10px">🔥 MEJOR VALOR</div>
-          <div class="pack-num">3</div>
-          <div class="pack-unit">barriles</div>
+          <div class="pack-num">3x</div>
           <div class="pack-lts">90 litros</div>
           <div class="pack-price">₲ 850.000</div>
           <div class="pack-save">Ahorrás ₲ 350.000</div>

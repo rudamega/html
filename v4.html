@@ -108,44 +108,44 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:fl
 .step-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
 /* FORM SECTION */
-.form-section{padding:80px 20px;background:var(--dark);position:relative;overflow:hidden}
-.form-section::before{content:'RESERVÁ';font-family:'Bebas Neue',sans-serif;font-size:180px;color:rgba(232,28,35,0.05);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:8px}
+.form-section{padding:80px 20px;background:var(--off);position:relative;overflow:hidden}
+.form-section::before{content:'RESERVÁ';font-family:'Bebas Neue',sans-serif;font-size:180px;color:rgba(232,28,35,0.04);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:8px}
 .form-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
 .form-header{text-align:center;margin-bottom:48px}
 .form-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
-.form-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);color:var(--white);line-height:1}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);color:var(--text);line-height:1}
 .form-title span{color:var(--red)}
-.form-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-top:10px}
+.form-sub{font-size:14px;color:var(--muted);margin-top:10px}
 
 .steps-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px;flex-wrap:nowrap}
 .step-dot{display:flex;flex-direction:column;align-items:center;gap:6px}
-.step-dot-circle{width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);transition:.3s}
+.step-dot-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--muted);transition:.3s}
 .step-dot.active .step-dot-circle{border-color:var(--red);background:var(--red);color:var(--white)}
 .step-dot.done .step-dot-circle{border-color:var(--red);background:var(--red);color:var(--white)}
-.step-dot-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
-.step-dot.active .step-dot-label{color:var(--white)}
+.step-dot-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.step-dot.active .step-dot-label{color:var(--text)}
 .step-dot.done .step-dot-label{color:var(--red)}
-.step-line{width:50px;height:2px;background:rgba(255,255,255,0.1);margin-bottom:18px;transition:.3s;flex-shrink:0}
+.step-line{width:50px;height:2px;background:var(--border);margin-bottom:18px;transition:.3s;flex-shrink:0}
 .step-line.done{background:var(--red)}
 
-.form-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:36px;backdrop-filter:blur(10px)}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
 .form-step{display:none}
 .form-step.active{display:block;animation:stepIn .3s ease}
 @keyframes stepIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 
-.step-title-text{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:6px;letter-spacing:1px}
-.step-subtitle{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:28px}
+.step-title-text{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);margin-bottom:6px;letter-spacing:1px}
+.step-subtitle{font-size:13px;color:var(--muted);margin-bottom:28px}
 
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .form-grid.single{grid-template-columns:1fr}
 @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
 
 .field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:12px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px}
-.field input,.field select,.field textarea{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;transition:.2s;outline:none;width:100%}
-.field input::placeholder{color:rgba(255,255,255,0.25)}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red);background:rgba(232,28,35,0.08)}
-.field select option{background:#1A0002;color:var(--white)}
+.field label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.field input,.field select,.field textarea{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;transition:.2s;outline:none;width:100%}
+.field input::placeholder{color:#B0B7C3}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red);background:var(--red-light)}
+.field select option{background:var(--white);color:var(--text)}
 .field textarea{resize:vertical;min-height:100px}
 .field-error{font-size:11px;color:#FF6B6B;margin-top:2px;display:none}
 .field.has-error .field-error{display:block}
@@ -154,50 +154,50 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:fl
 .radio-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .radio-card{position:relative}
 .radio-card input{position:absolute;opacity:0;width:0;height:0}
-.radio-card label{display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid rgba(255,255,255,0.12);border-radius:12px;cursor:pointer;transition:.2s;font-size:13px;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.04)}
-.radio-card input:checked + label{border-color:var(--red);background:rgba(232,28,35,0.12);color:var(--white)}
+.radio-card label{display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:.2s;font-size:13px;color:var(--muted);background:var(--off)}
+.radio-card input:checked + label{border-color:var(--red);background:var(--red-light);color:var(--text)}
 .radio-card label:hover{border-color:rgba(232,28,35,0.4)}
 .radio-icon{font-size:18px}
 
 .marca-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
 .marca-card{position:relative}
 .marca-card input{position:absolute;opacity:0;width:0;height:0}
-.marca-card label{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 10px;border:2px solid rgba(255,255,255,0.1);border-radius:14px;cursor:pointer;transition:.2s;font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center;background:rgba(255,255,255,0.03)}
-.marca-card input:checked + label{border-color:var(--red);background:rgba(232,28,35,0.15);color:var(--white)}
+.marca-card label{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 10px;border:2px solid var(--border);border-radius:14px;cursor:pointer;transition:.2s;font-size:12px;font-weight:700;color:var(--muted);text-align:center;background:var(--off)}
+.marca-card input:checked + label{border-color:var(--red);background:var(--red-light);color:var(--text)}
 .marca-card label:hover{border-color:rgba(232,28,35,0.4)}
 .marca-emoji{font-size:24px}
 
 .ciudad-select{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
-.ciudad-btn{padding:10px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;cursor:pointer;transition:.2s;text-align:center;font-family:'Plus Jakarta Sans',sans-serif;border:1px solid rgba(255,255,255,0.1)}
-.ciudad-btn:hover{border-color:rgba(232,28,35,0.4);color:rgba(255,255,255,0.8)}
-.ciudad-btn.selected{border-color:var(--red);background:rgba(232,28,35,0.15);color:var(--white)}
+.ciudad-btn{padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:var(--off);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:.2s;text-align:center;font-family:'Plus Jakarta Sans',sans-serif}
+.ciudad-btn:hover{border-color:rgba(232,28,35,0.4);color:var(--text)}
+.ciudad-btn.selected{border-color:var(--red);background:var(--red-light);color:var(--text)}
 
 .hora-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.hora-btn{padding:12px 20px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
-.hora-btn:hover{border-color:rgba(232,28,35,0.4);color:rgba(255,255,255,0.8)}
-.hora-btn.selected{border-color:var(--red);background:rgba(232,28,35,0.15);color:var(--white)}
+.hora-btn{padding:12px 20px;border:1px solid var(--border);border-radius:10px;background:var(--off);color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.hora-btn:hover{border-color:rgba(232,28,35,0.4);color:var(--text)}
+.hora-btn.selected{border-color:var(--red);background:var(--red-light);color:var(--text)}
 
 .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px}
-.btn-back{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:14px 28px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
-.btn-back:hover{border-color:rgba(255,255,255,0.4);color:var(--white)}
+.btn-back{background:transparent;border:1px solid var(--border);color:var(--muted);padding:14px 28px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-back:hover{border-color:var(--muted);color:var(--text)}
 .btn-next{background:var(--red);color:var(--white);padding:14px 36px;border-radius:100px;font-size:13px;font-weight:800;cursor:pointer;transition:.2s;border:none;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 4px 16px rgba(232,28,35,0.4)}
 .btn-next:hover{background:var(--red2);transform:translateY(-2px)}
 .btn-submit{background:var(--red);color:var(--white);padding:16px 40px;border-radius:100px;font-size:14px;font-weight:800;cursor:pointer;transition:.2s;border:none;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 4px 16px rgba(232,28,35,0.4)}
 .btn-submit:hover{background:var(--red2);transform:translateY(-2px)}
 
-.progress-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-bottom:32px;overflow:hidden}
+.progress-bar{height:3px;background:var(--border);border-radius:2px;margin-bottom:32px;overflow:hidden}
 .progress-fill{height:100%;background:var(--red);border-radius:2px;transition:.4s ease}
 
 .success-state{text-align:center;padding:40px 20px;display:none}
 .success-state.show{display:block;animation:stepIn .4s ease}
 .success-icon{font-size:64px;margin-bottom:16px}
-.success-title{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);margin-bottom:8px}
-.success-sub{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7}
+.success-title{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--text);margin-bottom:8px}
+.success-sub{font-size:15px;color:var(--muted);line-height:1.7}
 
 .resumen-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
-.resumen-item{background:rgba(255,255,255,0.05);border-radius:12px;padding:14px}
-.resumen-label{font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:4px}
-.resumen-value{font-size:14px;color:var(--white);font-weight:600}
+.resumen-item{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:14px}
+.resumen-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.resumen-value{font-size:14px;color:var(--text);font-weight:600}
 @media(max-width:500px){.resumen-grid{grid-template-columns:1fr}}
 
 /* CTA BANNER */
@@ -590,7 +590,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div class="ciudad-btn" onclick="selectCiudad(this,'Loma Pyta')">Loma Pyta</div>
           <div class="ciudad-btn" onclick="selectCiudad(this,'otra')">Otra ciudad...</div>
         </div>
-        <input type="text" id="otraCiudad" placeholder="¿Cuál ciudad?" style="display:none;margin-top:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 16px;font-size:14px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;width:100%;outline:none">
+        <input type="text" id="otraCiudad" placeholder="¿Cuál ciudad?" style="display:none;margin-top:10px;background:var(--off);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;width:100%;outline:none">
         <input type="hidden" id="ciudadValue">
         <div class="form-grid" style="margin-top:16px">
           <div class="field" id="f-fecha"><label>Fecha del evento *</label><input type="date" id="fecha"><span class="field-error">Seleccioná una fecha</span></div>

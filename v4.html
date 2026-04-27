@@ -251,6 +251,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .pack-inc{list-style:none;margin-bottom:18px;width:100%;text-align:left}
 .pack-inc li{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid #F3F4F6;display:flex;align-items:center;gap:6px}
 .pack-inc li::before{content:"✓";color:var(--red);font-weight:800;font-size:11px;flex-shrink:0}
+.pack-inc.green li::before{color:var(--munich-green)}
+.pack-inc.yellow li::before{color:var(--skol-yellow)}
+.pack-inc.burg li::before{color:var(--stella-burg)}
 </style>
 </head>
 <body>
@@ -329,14 +332,15 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="pack-num green">1x</div>
         <div class="pack-lts">30 litros</div>
         <div class="pack-price">₲ 400.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 350.000</strong></div>
         <div class="pack-save invisible">-</div>
-        <ul class="pack-inc">
+        <ul class="pack-inc green">
           <li>1 Máquina de chopp</li>
           <li>1 Barril de 30 litros</li>
           <li>Mesa para la máquina</li>
           <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%">Quiero reservar →</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">Quiero reservar →</button>
         <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="pack-card featured-munich">
@@ -345,8 +349,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="pack-num green">1x</div>
         <div class="pack-lts">50 litros</div>
         <div class="pack-price">₲ 600.000</div>
+        <div class="card-reload">Recarga 30L: <strong>₲ 350.000</strong> · Recarga 50L: <strong>₲ 550.000</strong></div>
         <div class="pack-save invisible">-</div>
-        <ul class="pack-inc">
+        <ul class="pack-inc green">
           <li>1 Máquina de chopp</li>
           <li>1 Barril de 50 litros</li>
           <li>Mesa para la máquina</li>
@@ -364,8 +369,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="pack-num green">1x</div>
         <div class="pack-lts">30 litros</div>
         <div class="pack-price">₲ 460.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 450.000</strong></div>
         <div class="pack-save invisible">-</div>
-        <ul class="pack-inc">
+        <ul class="pack-inc green">
           <li>1 Máquina de chopp</li>
           <li>1 Barril de 30 litros</li>
           <li>Mesa para la máquina</li>
@@ -391,6 +397,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div class="pack-num">1x</div>
           <div class="pack-lts">30 litros</div>
           <div class="pack-price">₲ 400.000</div>
+          <div class="card-reload">Recarga: <strong>₲ 300.000</strong></div>
           <div class="pack-save invisible">-</div>
           <ul class="pack-inc">
             <li>1 Máquina de chopp</li>
@@ -409,6 +416,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div class="pack-num">2x</div>
           <div class="pack-lts">60 litros</div>
           <div class="pack-price">₲ 600.000</div>
+          <div class="card-reload">Recarga 30L: <strong>₲ 300.000</strong></div>
           <div class="pack-save">Ahorrás ₲ 200.000</div>
           <ul class="pack-inc">
             <li>1 Máquina de chopp</li>
@@ -427,6 +435,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div class="pack-num">3x</div>
           <div class="pack-lts">90 litros</div>
           <div class="pack-price">₲ 850.000</div>
+          <div class="card-reload">Recarga 30L: <strong>₲ 300.000</strong></div>
           <div class="pack-save">Ahorrás ₲ 350.000</div>
           <ul class="pack-inc">
             <li>1 Máquina de chopp</li>
@@ -447,8 +456,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="pack-num yellow">1x</div>
         <div class="pack-lts">30 litros</div>
         <div class="pack-price">₲ 450.000</div>
+        <div class="card-reload">Recarga: <strong>₲ 390.000</strong></div>
         <div class="pack-save invisible">-</div>
-        <ul class="pack-inc">
+        <ul class="pack-inc yellow">
           <li>1 Máquina de chopp</li>
           <li>1 Barril de 30 litros</li>
           <li>Mesa para la máquina</li>
@@ -472,8 +482,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="pack-num burg">1x</div>
         <div class="pack-lts">20 litros</div>
         <div class="pack-price">₲ 550.000</div>
+        <div class="card-reload" style="color:var(--muted)">Consultá disponibilidad de recarga</div>
         <div class="pack-save invisible">-</div>
-        <ul class="pack-inc">
+        <ul class="pack-inc burg">
           <li>1 Máquina de chopp</li>
           <li>1 Barril de 20 litros</li>
           <li>Mesa para la máquina</li>

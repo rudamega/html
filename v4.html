@@ -217,6 +217,17 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
 .reveal{opacity:0;transform:translateY(28px);transition:.55s ease}
 .reveal.show{opacity:1;transform:none}
+
+/* VS COMPARE — Pilsen */
+.brand-panel.vs-panel.active{display:block}
+.vs-compare{display:flex;flex-direction:column}
+.vs-divider{display:flex;align-items:center;justify-content:center;padding:16px 0}
+.vs-circle{width:44px;height:44px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--muted);flex-shrink:0}
+@media(min-width:601px){
+  .vs-compare{flex-direction:row;align-items:stretch}
+  .vs-compare .price-card{flex:1}
+  .vs-divider{flex-direction:column;padding:0 20px}
+}
 </style>
 </head>
 <body>
@@ -238,7 +249,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
     <div class="hero-left">
       <div class="hero-tag">🍺 Delivery en Asunción</div>
       <h1 class="hero-h1">CHOPP FRÍO<em>EN TU PUERTA</em></h1>
-      <p class="hero-sub">Máquina, barril y mesa hasta tu domicilio o evento. Munich, Pilsen, Skol y Stella Artois.</p>
+      <p class="hero-sub">Máquina, barril y mesa hasta tu domicilio o evento. <strong style="color:var(--red)">Pilsen</strong>, Munich, Skol y Stella Artois.</p>
       <div class="hero-btns">
         <a href="#precios" class="btn-red">Ver precios →</a>
         <a href="#como-funciona" class="btn-outline">¿Cómo funciona?</a>
@@ -282,14 +293,14 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
     <div class="sec-eye">Nuestros productos</div>
     <h2 class="sec-title">ELEGÍ TU<br><span>CHOPP</span></h2>
     <div class="brand-tabs">
-      <button class="brand-tab active" onclick="showBrand('munich-orig',this)">Munich Original</button>
+      <button class="brand-tab" onclick="showBrand('munich-orig',this)">Munich Original</button>
       <button class="brand-tab" onclick="showBrand('munich-ultra',this)">Munich Ultra</button>
-      <button class="brand-tab" onclick="showBrand('pilsen',this)">Pilsen</button>
+      <button class="brand-tab active" onclick="showBrand('pilsen',this)">🏆 Pilsen</button>
       <button class="brand-tab" onclick="showBrand('skol',this)">Skol</button>
       <button class="brand-tab" onclick="showBrand('stella',this)">Stella Artois</button>
     </div>
 
-    <div id="munich-orig" class="brand-panel active">
+    <div id="munich-orig" class="brand-panel">
       <div class="price-card">
         <div class="card-lt">30<span> lts</span></div>
         <div class="card-price">₲ 400.000</div>
@@ -332,27 +343,36 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
       </div>
     </div>
 
-    <div id="pilsen" class="brand-panel">
-      <div class="price-card">
-        <div class="card-lt">30<span> lts</span></div>
-        <div class="card-price">₲ 400.000</div>
-        <div class="card-reload">Recarga: <strong>₲ 280.000</strong></div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>1 Barril de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
-        </ul>
-        <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
-      </div>
-      <div class="price-card featured">
-        <div class="badge badge-green">🎁 +10 litros de REGALO</div>
-        <div class="card-lt">60<span> lts</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2 barriles de 30L — pagás solo 50L</div>
-        <div class="card-price">₲ 600.000</div>
-        <div class="card-reload">Recarga 30L: <strong>₲ 280.000</strong></div>
-        <ul class="card-inc">
-          <li>1 Máquina de chopp</li><li>2 Barriles de 30 litros</li><li>Mesa para la máquina</li><li>25 vasos de plástico</li>
-        </ul>
-        <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
-        <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+    <div id="pilsen" class="brand-panel vs-panel active">
+      <div class="vs-compare">
+        <div class="price-card">
+          <div class="badge" style="background:#F3F4F6;color:var(--muted)">Munich Original 50L</div>
+          <div class="card-lt">50<span> lts</span></div>
+          <div class="card-price">₲ 600.000</div>
+          <ul class="card-inc">
+            <li>1 Máquina de chopp</li>
+            <li>1 Barril de 50 litros</li>
+            <li>Mesa para la máquina</li>
+            <li>25 vasos de plástico</li>
+          </ul>
+          <button onclick="scrollToForm()" class="btn-reserve outline">Quiero reservar →</button>
+        </div>
+        <div class="vs-divider"><div class="vs-circle">VS</div></div>
+        <div class="price-card featured">
+          <div class="badge badge-green">🏆 MEJOR OPCIÓN</div>
+          <div class="card-lt">60<span> lts</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:6px">2 barriles Pilsen 30L — <strong style="color:var(--red)">10 litros de regalo</strong></div>
+          <div class="card-price">₲ 600.000</div>
+          <div class="card-reload">Mismo precio, <strong>más chopp</strong></div>
+          <ul class="card-inc">
+            <li>1 Máquina de chopp</li>
+            <li>2 Barriles de 30 litros</li>
+            <li>Mesa para la máquina</li>
+            <li>25 vasos de plástico</li>
+          </ul>
+          <button onclick="scrollToForm()" class="btn-reserve red">Quiero reservar →</button>
+          <div class="card-note">🎯 A partir de 5 barriles — precio especial</div>
+        </div>
       </div>
     </div>
 
@@ -403,7 +423,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
     <div class="sec-eye">Simple y rápido</div>
     <h2 class="sec-title">¿CÓMO<br><span style="color:var(--red)">FUNCIONA?</span></h2>
     <div class="steps-grid">
-      <div class="step"><div class="step-num">Paso 01</div><div class="step-icon">🍺</div><div class="step-title">Elegí tu marca</div><div class="step-desc">Munich, Pilsen, Skol o Stella. El chopp que más te gusta para tu evento.</div></div>
+      <div class="step"><div class="step-num">Paso 01</div><div class="step-icon">🏆</div><div class="step-title">Elegí tu marca</div><div class="step-desc">Pilsen, Munich, Skol o Stella. El chopp que más te gusta para tu evento.</div></div>
       <div class="step"><div class="step-num">Paso 02</div><div class="step-icon">📋</div><div class="step-title">Completá el formulario</div><div class="step-desc">Llenás tus datos, fecha, lugar y tu pedido. Todo en un solo paso.</div></div>
       <div class="step"><div class="step-num">Paso 03</div><div class="step-icon">✅</div><div class="step-title">Confirmamos</div><div class="step-desc">Revisamos tu solicitud y te confirmamos la disponibilidad.</div></div>
       <div class="step"><div class="step-num">Paso 04</div><div class="step-icon">🎉</div><div class="step-title">¡A disfrutar!</div><div class="step-desc">Llegamos con todo el equipo. Vos solo disfrutás.</div></div>
@@ -518,7 +538,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="marca-cards">
           <div class="marca-card"><input type="radio" name="marca" id="m1" value="Munich Original"><label for="m1"><span class="marca-emoji">🍺</span>Munich Original</label></div>
           <div class="marca-card"><input type="radio" name="marca" id="m2" value="Munich Ultra"><label for="m2"><span class="marca-emoji">⭐</span>Munich Ultra</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m3" value="Pilsen"><label for="m3"><span class="marca-emoji">🏆</span>Pilsen</label></div>
+          <div class="marca-card"><input type="radio" name="marca" id="m3" value="Pilsen" checked><label for="m3"><span class="marca-emoji">🏆</span>Pilsen ⭐</label></div>
           <div class="marca-card"><input type="radio" name="marca" id="m4" value="Skol"><label for="m4"><span class="marca-emoji">🌟</span>Skol</label></div>
           <div class="marca-card"><input type="radio" name="marca" id="m5" value="Stella Artois"><label for="m5"><span class="marca-emoji">💎</span>Stella Artois</label></div>
         </div>

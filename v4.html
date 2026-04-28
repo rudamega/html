@@ -613,6 +613,11 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div class="radio-card"><input type="radio" name="lugar" id="l6" value="Empresa"><label for="l6"><span class="radio-icon">🏛</span>Empresa</label></div>
         </div>
         <input type="hidden" id="lugarValue">
+        <div class="field" style="margin-top:20px;margin-bottom:8px"><label>¿Hay que subir escaleras? *</label></div>
+        <div class="radio-cards" style="grid-template-columns:1fr 1fr;max-width:280px">
+          <div class="radio-card"><input type="radio" name="escaleras" id="esc-no" value="No" checked><label for="esc-no"><span class="radio-icon">❌</span>No</label></div>
+          <div class="radio-card"><input type="radio" name="escaleras" id="esc-si" value="Sí"><label for="esc-si"><span class="radio-icon">✅</span>Sí</label></div>
+        </div>
         <div class="form-nav"><button class="btn-back" onclick="prevStep(2)">← Atrás</button><button class="btn-next" onclick="nextStep(2)">Siguiente →</button></div>
       </div>
 
@@ -636,6 +641,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
               <div class="radio-card"><input type="radio" name="consignacion" id="c-si" value="SI"><label for="c-si"><span class="radio-icon">✅</span>Sí</label></div>
             </div>
           </div>
+        </div>
+        <div id="consignacion-fields" style="display:none;margin-bottom:16px">
+          <div class="field"><label>¿Qué querés consignar?</label><input type="text" id="consignacion-detalle" placeholder="Ej: 2 barriles adicionales de 30L"></div>
         </div>
         <div class="form-grid single">
           <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
@@ -695,6 +703,11 @@ function showBrand(id,btn){
 // Factura toggle
 document.querySelectorAll('input[name="factura"]').forEach(r=>{
   r.addEventListener('change',()=>{ document.getElementById('factura-fields').style.display = r.value==='SI'?'block':'none'; });
+});
+
+// Consignación toggle
+document.querySelectorAll('input[name="consignacion"]').forEach(r=>{
+  r.addEventListener('change',()=>{ document.getElementById('consignacion-fields').style.display = r.value==='SI'?'block':'none'; });
 });
 
 // Lugar
@@ -765,9 +778,11 @@ function collectData(){
     invitados:document.getElementById('invitados').value,
     hora:document.getElementById('horaValue').value,
     lugar:document.getElementById('lugarValue').value,
+    escaleras:document.querySelector('input[name="escaleras"]:checked')?.value,
     marca:document.querySelector('input[name="marca"]:checked')?.value,
     pedido:document.getElementById('pedido').value,
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
+    consignacionDetalle:document.getElementById('consignacion-detalle')?.value,
     comentarios:document.getElementById('comentarios').value,
   };
 }
@@ -778,15 +793,17 @@ function buildResumen(){
     {label:'Nombre',value:formData.nombre},
     {label:'CI',value:formData.ci},
     {label:'WhatsApp',value:formData.whatsapp},
-    {label:'Factura',value:formData.factura},
+    {label:'Factura',value:formData.factura==='SI'?`Sí${formData.razonSocial?' — '+formData.razonSocial:''}${formData.ruc?' · RUC: '+formData.ruc:''}`:null},
     {label:'Ciudad',value:formData.ciudad},
     {label:'Fecha',value:formData.fecha},
     {label:'Hora',value:formData.hora},
     {label:'Invitados',value:formData.invitados},
     {label:'Lugar',value:formData.lugar},
+    {label:'Escaleras',value:formData.escaleras},
     {label:'Marca',value:formData.marca},
     {label:'Pedido',value:formData.pedido},
-    {label:'Consignación',value:formData.consignacion},
+    {label:'Consignación',value:formData.consignacion==='SI'?`Sí${formData.consignacionDetalle?' — '+formData.consignacionDetalle:''}`:null},
+    {label:'Comentarios',value:formData.comentarios||null},
   ];
   document.getElementById('resumenGrid').innerHTML=items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
 }
@@ -820,20 +837,32 @@ function prevStep(step){
 async function submitForm(){
   collectData();
 
-  // Conectar webhook n8n — reemplazar URL abajo
-  // const WEBHOOK_URL = 'TU_WEBHOOK_N8N_AQUI';
-  // try {
-  //   await fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(formData) });
-  // } catch(e) { console.error(e); }
+  let msg = '🍺 *NUEVA SOLICITUD DE CHOPP*\n\n';
+  msg += '👤 *Nombre:* ' + formData.nombre + '\n';
+  msg += '🪪 *CI:* ' + formData.ci + '\n';
+  msg += '📱 *WhatsApp:* ' + formData.whatsapp + '\n';
+  if(formData.factura==='SI'){
+    msg += '🧾 *Factura:* Sí';
+    if(formData.razonSocial) msg += ' — ' + formData.razonSocial;
+    if(formData.ruc) msg += ' · RUC: ' + formData.ruc;
+    msg += '\n';
+  }
+  msg += '\n📍 *Ciudad:* ' + formData.ciudad + '\n';
+  msg += '📅 *Fecha:* ' + formData.fecha + '\n';
+  msg += '🕐 *Hora:* ' + formData.hora + '\n';
+  msg += '👥 *Invitados:* ' + formData.invitados + '\n';
+  msg += '🏠 *Lugar:* ' + formData.lugar + '\n';
+  msg += '🪜 *Escaleras:* ' + formData.escaleras + '\n';
+  msg += '\n🍺 *Marca:* ' + formData.marca + '\n';
+  msg += '📦 *Pedido:* ' + formData.pedido + '\n';
+  msg += '🔄 *Consignación:* ' + (formData.consignacion==='SI' ? 'Sí' + (formData.consignacionDetalle ? ' — ' + formData.consignacionDetalle : '') : 'No') + '\n';
+  if(formData.comentarios) msg += '\n💬 *Comentarios:* ' + formData.comentarios + '\n';
 
-  // Mostrar success
   document.getElementById('step4').classList.remove('active');
   document.getElementById('successState').classList.add('show');
   document.getElementById('progressFill').style.width='100%';
 
-  // Abrir WhatsApp con mensaje pre-cargado
-  const msg = encodeURIComponent('Hola 🍺🎉🙌 realicé mi solicitud de servicio de chopp por la web. Me pueden confirmar si mi servicio está confirmado?');
-  setTimeout(() => { window.open('https://wa.me/595994808080?text=' + msg, '_blank'); }, 800);
+  setTimeout(() => { window.open('https://wa.me/595994808080?text=' + encodeURIComponent(msg), '_blank'); }, 800);
 }
 
 // Scroll reveal

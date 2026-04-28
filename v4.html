@@ -746,6 +746,12 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div class="field"><label>Seleccioná el tamaño a consignar</label>
             <div id="consign-options" style="margin-top:8px"></div>
           </div>
+          <div id="carrito-consign" style="display:none">
+            <div class="carrito-section" style="margin-top:12px">
+              <div class="carrito-title">🔄 CONSIGNACIÓN</div>
+              <div id="carrito-consign-items"></div>
+            </div>
+          </div>
         </div>
         <div class="field" style="margin-top:20px">
           <label>¿Vasos plásticos extras?</label>
@@ -794,6 +800,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 <script>
 let formData = {};
 let carrito = [];
+let carritoConsign = [];
 
 // Scroll to form
 function scrollToForm(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); }
@@ -840,26 +847,51 @@ document.querySelectorAll('input[name="consignacion"]').forEach(r=>{
   r.addEventListener('change',()=>{
     const fields = document.getElementById('consignacion-fields');
     if(r.value==='SI'){ fields.style.display='block'; renderConsignOptions(); }
-    else fields.style.display='none';
+    else { fields.style.display='none'; carritoConsign=[]; renderCarritoConsign(); }
   });
 });
 
+function addConsignItem(btn){
+  const row = btn.closest('.opcion-row');
+  carritoConsign.push({opcion: row.dataset.opcion});
+  renderCarritoConsign();
+  setTimeout(()=>{ document.getElementById('carrito-consign').scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
+}
+
+function removeConsignItem(i){ carritoConsign.splice(i,1); renderCarritoConsign(); }
+
+function renderCarritoConsign(){
+  const el = document.getElementById('carrito-consign');
+  if(carritoConsign.length===0){ el.style.display='none'; return; }
+  el.style.display='block';
+  document.getElementById('carrito-consign-items').innerHTML = carritoConsign.map((item,i)=>`
+    <div class="carrito-item">
+      <span class="carrito-item-name">${item.opcion}</span>
+      <button class="btn-remove" onclick="removeConsignItem(${i})" type="button">✕</button>
+    </div>`).join('');
+}
+
 function renderConsignOptions(){
   const container = document.getElementById('consign-options');
+  carritoConsign = [];
+  renderCarritoConsign();
   const opts = [];
   const seen = new Set();
   carrito.forEach(item=>{
     const o = item.opcion;
-    if(o.startsWith('Pilsen') && !seen.has('p')){seen.add('p');opts.push({id:'cp30',label:'Pilsen 30L',precio:'₲ 300.000'});}
-    if(o.startsWith('Skol') && !seen.has('sk')){seen.add('sk');opts.push({id:'csk30',label:'Skol 30L',precio:'₲ 390.000'});}
-    if(o.startsWith('Stella') && !seen.has('st')){seen.add('st');opts.push({id:'cst',label:'Stella Artois 20L',precio:'Consultá'});}
-    if(o.includes('Munich Original') && !seen.has('mo30')){seen.add('mo30');opts.push({id:'cmo30',label:'Munich Original 30L',precio:'₲ 350.000'});}
-    if(o.includes('Munich Original — 50L') && !seen.has('mo50')){seen.add('mo50');opts.push({id:'cmo50',label:'Munich Original 50L',precio:'₲ 550.000'});}
-    if(o.startsWith('Munich Ultra') && !seen.has('mu')){seen.add('mu');opts.push({id:'cmu30',label:'Munich Ultra 30L',precio:'₲ 450.000'});}
+    if(o.startsWith('Pilsen') && !seen.has('p')){seen.add('p');opts.push({opcion:'Pilsen 30L · ₲ 300.000'});}
+    if(o.startsWith('Skol') && !seen.has('sk')){seen.add('sk');opts.push({opcion:'Skol 30L · ₲ 390.000'});}
+    if(o.startsWith('Stella') && !seen.has('st')){seen.add('st');opts.push({opcion:'Stella Artois 20L · Consultá'});}
+    if(o.includes('Munich Original') && !seen.has('mo30')){seen.add('mo30');opts.push({opcion:'Munich Original 30L · ₲ 350.000'});}
+    if(o.includes('Munich Original — 50L') && !seen.has('mo50')){seen.add('mo50');opts.push({opcion:'Munich Original 50L · ₲ 550.000'});}
+    if(o.startsWith('Munich Ultra') && !seen.has('mu')){seen.add('mu');opts.push({opcion:'Munich Ultra 30L · ₲ 450.000'});}
   });
   container.innerHTML = opts.length===0
     ? '<div style="font-size:13px;color:var(--muted)">Primero agregá ítems al pedido.</div>'
-    : opts.map(o=>`<div class="consign-opt"><input type="checkbox" id="${o.id}" name="consign-opt" value="${o.label} · ${o.precio}"><label for="${o.id}"><span class="consign-opt-label">${o.label}</span><span class="consign-opt-price">${o.precio}</span></label></div>`).join('');
+    : opts.map(o=>{
+        const [nombre,precio] = o.opcion.split(' · ');
+        return `<div class="opcion-row" data-opcion="${o.opcion}"><div class="opcion-info"><div class="opcion-name">${nombre}</div><div class="opcion-inc">${precio}</div></div><button class="btn-add" onclick="addConsignItem(this)" type="button">+ ADD</button></div>`;
+      }).join('<div style="height:8px"></div>');
 }
 
 // Lugar
@@ -936,7 +968,7 @@ function collectData(){
     total:'₲ ' + (carrito.reduce((s,i)=>s+i.precio,0) + parseInt(document.querySelector('input[name="vasos-opt"]:checked')?.dataset.precio||0)).toLocaleString('es-PY'),
     vasos:document.querySelector('input[name="vasos-opt"]:checked')?.value,
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
-    consignacionDetalle:[...document.querySelectorAll('input[name="consign-opt"]:checked')].map(i=>i.value).join(' | '),
+    consignacionDetalle:carritoConsign.map(i=>i.opcion).join(' | '),
     comentarios:document.getElementById('comentarios').value,
   };
 }

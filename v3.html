@@ -217,6 +217,27 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
 .reveal{opacity:0;transform:translateY(28px);transition:.55s ease}
 .reveal.show{opacity:1;transform:none}
+
+/* CARRITO */
+.opciones-list{display:flex;flex-direction:column;gap:20px;margin-bottom:24px}
+.opcion-group-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;padding:8px 0 10px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:10px;color:rgba(255,255,255,0.9)}
+.opcion-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.04);gap:12px;transition:.2s}
+.opcion-row:hover{border-color:rgba(255,255,255,0.15)}
+.opcion-info{flex:1}
+.opcion-name{font-size:13px;color:rgba(255,255,255,0.8);font-weight:600;margin-bottom:2px}
+.opcion-inc{font-size:11px;color:rgba(255,255,255,0.35)}
+.opcion-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);white-space:nowrap}
+.btn-add{background:#1A6B3A;color:#fff;border:none;padding:10px 18px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;transition:.2s;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.5px}
+.btn-add:hover{background:#155a30;transform:translateY(-1px)}
+.carrito-section{margin-top:8px;padding-top:20px;border-top:2px solid var(--red)}
+.carrito-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--white);letter-spacing:2px;margin-bottom:12px}
+.carrito-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,0.06);border-radius:10px;margin-bottom:8px;font-size:13px;color:rgba(255,255,255,0.85);gap:10px}
+.carrito-item-name{flex:1}
+.btn-remove{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-remove:hover{border-color:#FF6B6B;color:#FF6B6B}
+.carrito-total{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);text-align:right;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);margin-top:4px}
+.carrito-total span{color:var(--red)}
+.carrito-empty{font-size:13px;color:rgba(255,255,255,0.3);text-align:center;padding:16px;font-style:italic}
 </style>
 </head>
 <body>
@@ -513,25 +534,109 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
       <!-- STEP 3 -->
       <div class="form-step" id="step3">
         <div class="step-title-text">Tu pedido</div>
-        <div class="step-subtitle">¿Qué chopp querés para tu evento?</div>
-        <div class="field" style="margin-bottom:10px"><label>Marca *</label></div>
-        <div class="marca-cards">
-          <div class="marca-card"><input type="radio" name="marca" id="m1" value="Munich Original"><label for="m1"><span class="marca-emoji">🍺</span>Munich Original</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m2" value="Munich Ultra"><label for="m2"><span class="marca-emoji">⭐</span>Munich Ultra</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m3" value="Pilsen"><label for="m3"><span class="marca-emoji">🏆</span>Pilsen</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m4" value="Skol"><label for="m4"><span class="marca-emoji">🌟</span>Skol</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m5" value="Stella Artois"><label for="m5"><span class="marca-emoji">💎</span>Stella Artois</label></div>
-        </div>
-        <div class="form-grid">
-          <div class="field" id="f-pedido"><label>Detalle del pedido *</label><input type="text" id="pedido" placeholder="Ej: 1 barril Munich 30L"><span class="field-error">Describí tu pedido</span></div>
-          <div class="field"><label>¿Barriles a consignación?</label>
-            <div class="radio-cards">
-              <div class="radio-card"><input type="radio" name="consignacion" id="c-no" value="NO" checked><label for="c-no"><span class="radio-icon">❌</span>No</label></div>
-              <div class="radio-card"><input type="radio" name="consignacion" id="c-si" value="SI"><label for="c-si"><span class="radio-icon">✅</span>Sí</label></div>
+        <div class="step-subtitle">Agregá las opciones que querés</div>
+
+        <div class="opciones-list">
+
+          <!-- MUNICH ORIGINAL -->
+          <div>
+            <div class="opcion-group-title" style="color:#4CAF80">🍺 MUNICH ORIGINAL</div>
+            <div class="opcion-row" data-opcion="Munich Original — 50L sin mesa · ₲ 590.000" data-precio="590000">
+              <div class="opcion-info"><div class="opcion-name">50 litros — sin mesa</div><div class="opcion-inc">Máquina + barril</div></div>
+              <div class="opcion-price">₲ 590.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 50L con mesa y vasos · ₲ 600.000" data-precio="600000">
+              <div class="opcion-info"><div class="opcion-name">50 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 600.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 30L sin mesa · ₲ 390.000" data-precio="390000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — sin mesa</div><div class="opcion-inc">Máquina + barril</div></div>
+              <div class="opcion-price">₲ 390.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 30L con mesa y vasos · ₲ 400.000" data-precio="400000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 400.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
           </div>
+
+          <!-- MUNICH ULTRA -->
+          <div>
+            <div class="opcion-group-title" style="color:#4CAF80">⭐ MUNICH ULTRA</div>
+            <div class="opcion-row" data-opcion="Munich Ultra — 30L con mesa y vasos · ₲ 460.000" data-precio="460000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 460.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- PILSEN -->
+          <div>
+            <div class="opcion-group-title" style="color:var(--red)">🏆 PILSEN</div>
+            <div class="opcion-row" data-opcion="Pilsen — 1x 30L · ₲ 400.000" data-precio="400000">
+              <div class="opcion-info"><div class="opcion-name">1x barril 30L</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 400.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Pilsen — 2x 30L (60L) · ₲ 600.000" data-precio="600000">
+              <div class="opcion-info"><div class="opcion-name">2x barriles 30L — 60 litros</div><div class="opcion-inc">Ahorrás ₲ 200.000 vs precio individual</div></div>
+              <div class="opcion-price">₲ 600.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Pilsen — 3x 30L (90L) · ₲ 850.000" data-precio="850000">
+              <div class="opcion-info"><div class="opcion-name">3x barriles 30L — 90 litros</div><div class="opcion-inc">Ahorrás ₲ 350.000 vs precio individual</div></div>
+              <div class="opcion-price">₲ 850.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- SKOL -->
+          <div>
+            <div class="opcion-group-title" style="color:#F5C800">🌟 SKOL</div>
+            <div class="opcion-row" data-opcion="Skol — 30L con mesa y vasos · ₲ 450.000" data-precio="450000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 450.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- STELLA ARTOIS -->
+          <div>
+            <div class="opcion-group-title" style="color:#C9A84C">💎 STELLA ARTOIS</div>
+            <div class="opcion-row" data-opcion="Stella Artois — 20L con mesa y vasos · ₲ 550.000" data-precio="550000">
+              <div class="opcion-info"><div class="opcion-name">20 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 550.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
         </div>
-        <div class="form-grid single">
+
+        <!-- CARRITO -->
+        <div id="carrito" style="display:none">
+          <div class="carrito-section">
+            <div class="carrito-title">🛒 MI PEDIDO</div>
+            <div id="carrito-items"></div>
+            <div class="carrito-total">TOTAL: <span id="carrito-total-val">₲ 0</span></div>
+          </div>
+        </div>
+        <div id="carrito-error" style="display:none;font-size:12px;color:#FF6B6B;margin-top:8px">Por favor agregá al menos una opción</div>
+
+        <div class="field" style="margin-top:20px"><label>¿Barriles a consignación?</label>
+          <div class="radio-cards">
+            <div class="radio-card"><input type="radio" name="consignacion" id="c-no" value="NO" checked><label for="c-no"><span class="radio-icon">❌</span>No</label></div>
+            <div class="radio-card"><input type="radio" name="consignacion" id="c-si" value="SI"><label for="c-si"><span class="radio-icon">✅</span>Sí</label></div>
+          </div>
+        </div>
+        <div class="form-grid single" style="margin-top:16px">
           <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
         </div>
         <div class="form-nav"><button class="btn-back" onclick="prevStep(3)">← Atrás</button><button class="btn-next" onclick="nextStep(3)">Ver resumen →</button></div>
@@ -567,9 +672,40 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
 <script>
 let formData = {};
+let carrito = [];
 
 // Scroll to form
 function scrollToForm(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); }
+
+// Carrito
+function addItem(btn){
+  const row = btn.closest('.opcion-row');
+  const opcion = row.dataset.opcion;
+  const precio = parseInt(row.dataset.precio);
+  carrito.push({opcion, precio});
+  renderCarrito();
+}
+
+function removeItem(i){
+  carrito.splice(i,1);
+  renderCarrito();
+}
+
+function renderCarrito(){
+  const el = document.getElementById('carrito');
+  const itemsEl = document.getElementById('carrito-items');
+  const totalEl = document.getElementById('carrito-total-val');
+  if(carrito.length===0){ el.style.display='none'; return; }
+  el.style.display='block';
+  itemsEl.innerHTML = carrito.map((item,i)=>`
+    <div class="carrito-item">
+      <span class="carrito-item-name">${item.opcion}</span>
+      <button class="btn-remove" onclick="removeItem(${i})">✕</button>
+    </div>
+  `).join('');
+  const total = carrito.reduce((s,i)=>s+i.precio,0);
+  totalEl.textContent = '₲ ' + total.toLocaleString('es-PY');
+}
 
 // Brand tabs
 function showBrand(id,btn){
@@ -632,9 +768,9 @@ function validateStep(step){
     else{document.getElementById('f-fecha').classList.remove('has-error');document.getElementById('f-invitados').classList.remove('has-error');}
   }
   if(step===3){
-    if(!document.querySelector('input[name="marca"]:checked')){alert('Por favor seleccioná una marca');valid=false;}
-    else if(!document.getElementById('pedido').value.trim()){document.getElementById('f-pedido').classList.add('has-error');valid=false;}
-    else document.getElementById('f-pedido').classList.remove('has-error');
+    const errEl = document.getElementById('carrito-error');
+    if(carrito.length===0){ errEl.style.display='block'; valid=false; }
+    else errEl.style.display='none';
   }
   return valid;
 }
@@ -652,8 +788,8 @@ function collectData(){
     invitados:document.getElementById('invitados').value,
     hora:document.getElementById('horaValue').value,
     lugar:document.getElementById('lugarValue').value,
-    marca:document.querySelector('input[name="marca"]:checked')?.value,
-    pedido:document.getElementById('pedido').value,
+    pedido:carrito.map(i=>i.opcion).join(' | '),
+    total:'₲ ' + carrito.reduce((s,i)=>s+i.precio,0).toLocaleString('es-PY'),
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
     comentarios:document.getElementById('comentarios').value,
   };
@@ -665,17 +801,17 @@ function buildResumen(){
     {label:'Nombre',value:formData.nombre},
     {label:'CI',value:formData.ci},
     {label:'WhatsApp',value:formData.whatsapp},
-    {label:'Factura',value:formData.factura},
     {label:'Ciudad',value:formData.ciudad},
     {label:'Fecha',value:formData.fecha},
     {label:'Hora',value:formData.hora},
     {label:'Invitados',value:formData.invitados},
     {label:'Lugar',value:formData.lugar},
-    {label:'Marca',value:formData.marca},
-    {label:'Pedido',value:formData.pedido},
     {label:'Consignación',value:formData.consignacion},
   ];
-  document.getElementById('resumenGrid').innerHTML=items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
+  let html = items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
+  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Pedido</div><div class="resumen-value" style="font-size:12px">${carrito.map(i=>i.opcion).join('<br>')}</div></div>`;
+  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Total</div><div class="resumen-value" style="font-size:20px;color:var(--red)">${formData.total}</div></div>`;
+  document.getElementById('resumenGrid').innerHTML=html;
 }
 
 function updateIndicators(step){
@@ -706,14 +842,33 @@ function prevStep(step){
 
 async function submitForm(){
   collectData();
-  // Conectar webhook n8n — reemplazar URL abajo
-  // const WEBHOOK_URL = 'TU_WEBHOOK_N8N_AQUI';
-  // try {
-  //   await fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(formData) });
-  // } catch(e) { console.error(e); }
+
+  let msg = '🍺 *NUEVA SOLICITUD DE CHOPP*\n\n';
+  msg += '👤 *Nombre:* ' + formData.nombre + '\n';
+  msg += '🪪 *CI:* ' + formData.ci + '\n';
+  msg += '📱 *WhatsApp:* ' + formData.whatsapp + '\n';
+  if(formData.factura==='SI'){
+    msg += '🧾 *Factura:* Sí';
+    if(formData.razonSocial) msg += ' — ' + formData.razonSocial;
+    if(formData.ruc) msg += ' · RUC: ' + formData.ruc;
+    msg += '\n';
+  }
+  msg += '\n📍 *Ciudad:* ' + formData.ciudad + '\n';
+  msg += '📅 *Fecha:* ' + formData.fecha + '\n';
+  msg += '🕐 *Hora:* ' + formData.hora + '\n';
+  msg += '👥 *Invitados:* ' + formData.invitados + '\n';
+  msg += '🏠 *Lugar:* ' + formData.lugar + '\n';
+  msg += '\n📦 *PEDIDO:*\n';
+  carrito.forEach(item => { msg += '  • ' + item.opcion + '\n'; });
+  msg += '\n💰 *TOTAL: ' + formData.total + '*\n';
+  msg += '🔄 *Consignación:* ' + (formData.consignacion==='SI'?'Sí':'No') + '\n';
+  if(formData.comentarios) msg += '\n💬 *Comentarios:* ' + formData.comentarios + '\n';
+
   document.getElementById('step4').classList.remove('active');
   document.getElementById('successState').classList.add('show');
   document.getElementById('progressFill').style.width='100%';
+
+  setTimeout(()=>{ window.open('https://wa.me/595994808080?text='+encodeURIComponent(msg),'_blank'); },800);
 }
 
 // Scroll reveal

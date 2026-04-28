@@ -254,6 +254,26 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .pack-inc.green li::before{color:var(--munich-green)}
 .pack-inc.yellow li::before{color:var(--skol-yellow)}
 .pack-inc.burg li::before{color:var(--stella-burg)}
+
+/* CARRITO */
+.opciones-list{display:flex;flex-direction:column;gap:20px;margin-bottom:24px}
+.opcion-group-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;padding:8px 0 10px;border-bottom:1px solid var(--border);margin-bottom:10px;color:var(--text)}
+.opcion-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:var(--off);gap:12px;transition:.2s}
+.opcion-row:hover{border-color:rgba(232,28,35,0.3)}
+.opcion-info{flex:1}
+.opcion-name{font-size:13px;color:var(--text);font-weight:600;margin-bottom:2px}
+.opcion-inc{font-size:11px;color:var(--muted)}
+.opcion-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);white-space:nowrap}
+.btn-add{background:#1A6B3A;color:#fff;border:none;padding:10px 18px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;transition:.2s;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.5px}
+.btn-add:hover{background:#155a30;transform:translateY(-1px)}
+.carrito-section{margin-top:8px;padding-top:20px;border-top:2px solid var(--red)}
+.carrito-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--text);letter-spacing:2px;margin-bottom:12px}
+.carrito-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--off);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-size:13px;color:var(--text);gap:10px}
+.carrito-item-name{flex:1}
+.btn-remove{background:transparent;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-remove:hover{border-color:#FF6B6B;color:#FF6B6B}
+.carrito-total{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);text-align:right;padding-top:12px;border-top:1px solid var(--border);margin-top:4px}
+.carrito-total span{color:var(--red)}
 </style>
 </head>
 <body>
@@ -340,7 +360,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <li>Mesa para la máquina</li>
           <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm('Munich Original','1 Barril Munich 30L · ₲ 400.000')" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">QUIERO reservar ESTA OPCIÓN</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">QUIERO reservar ESTA OPCIÓN</button>
         <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="pack-card featured-munich">
@@ -357,7 +377,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <li>Mesa para la máquina</li>
           <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm('Munich Original','1 Barril Munich 50L · ₲ 600.000')" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">QUIERO reservar ESTA OPCIÓN</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">QUIERO reservar ESTA OPCIÓN</button>
         <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
     </div>
@@ -377,7 +397,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <li>Mesa para la máquina</li>
           <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm('Munich Ultra','1 Barril Munich Ultra 30L · ₲ 460.000')" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">QUIERO reservar ESTA OPCIÓN</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--munich-green);color:var(--munich-green)" onmouseover="this.style.background='var(--munich-green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--munich-green)'">QUIERO reservar ESTA OPCIÓN</button>
         <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="price-card dashed-card">
@@ -405,7 +425,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
             <li>Mesa para la máquina</li>
             <li>25 vasos de plástico</li>
           </ul>
-          <button onclick="scrollToForm('Pilsen','1 Barril Pilsen 30L · ₲ 400.000')" class="btn-reserve outline" style="width:100%">QUIERO reservar ESTA OPCIÓN</button>
+          <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%">QUIERO reservar ESTA OPCIÓN</button>
           <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
         </div>
 
@@ -424,7 +444,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
             <li>Mesa para la máquina</li>
             <li>25 vasos de plástico</li>
           </ul>
-          <button onclick="scrollToForm('Pilsen','2 Barriles Pilsen 30L · ₲ 600.000')" class="btn-reserve red" style="width:100%">QUIERO reservar ESTA OPCIÓN</button>
+          <button onclick="scrollToForm()" class="btn-reserve red" style="width:100%">QUIERO reservar ESTA OPCIÓN</button>
           <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
         </div>
 
@@ -443,7 +463,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
             <li>Mesa para la máquina</li>
             <li>25 vasos de plástico</li>
           </ul>
-          <button onclick="scrollToForm('Pilsen','3 Barriles Pilsen 30L · ₲ 850.000')" class="btn-reserve outline" style="width:100%">QUIERO reservar ESTA OPCIÓN</button>
+          <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%">QUIERO reservar ESTA OPCIÓN</button>
           <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
         </div>
 
@@ -464,7 +484,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <li>Mesa para la máquina</li>
           <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm('Skol','1 Barril Skol 30L · ₲ 450.000')" class="btn-reserve outline" style="width:100%;border-color:var(--skol-yellow);color:#1A0002" onmouseover="this.style.background='var(--skol-yellow)';this.style.color='#1A0002'" onmouseout="this.style.background='transparent';this.style.color='#1A0002'">QUIERO reservar ESTA OPCIÓN</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--skol-yellow);color:#1A0002" onmouseover="this.style.background='var(--skol-yellow)';this.style.color='#1A0002'" onmouseout="this.style.background='transparent';this.style.color='#1A0002'">QUIERO reservar ESTA OPCIÓN</button>
         <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="price-card dashed-card">
@@ -490,7 +510,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <li>Mesa para la máquina</li>
           <li>25 vasos de plástico</li>
         </ul>
-        <button onclick="scrollToForm('Stella Artois','1 Barril Stella Artois 20L · ₲ 550.000')" class="btn-reserve outline" style="width:100%;border-color:var(--stella-burg);color:var(--stella-burg)" onmouseover="this.style.background='var(--stella-burg)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--stella-burg)'">QUIERO reservar ESTA OPCIÓN</button>
+        <button onclick="scrollToForm()" class="btn-reserve outline" style="width:100%;border-color:var(--stella-burg);color:var(--stella-burg)" onmouseover="this.style.background='var(--stella-burg)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--stella-burg)'">QUIERO reservar ESTA OPCIÓN</button>
         <div class="card-note" style="width:100%;margin-top:10px">🎯 A partir de 5 barriles, consultá por tu precio especial</div>
       </div>
       <div class="price-card dashed-card">
@@ -624,28 +644,100 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
       <!-- STEP 3 -->
       <div class="form-step" id="step3">
         <div class="step-title-text">Tu pedido</div>
-        <div class="step-subtitle">¿Qué chopp querés para tu evento?</div>
-        <div class="field" style="margin-bottom:10px"><label>Marca *</label></div>
-        <div class="marca-cards">
-          <div class="marca-card"><input type="radio" name="marca" id="m1" value="Munich Original"><label for="m1"><span class="marca-emoji">🍺</span>Munich Original</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m2" value="Munich Ultra"><label for="m2"><span class="marca-emoji">⭐</span>Munich Ultra</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m3" value="Pilsen" checked><label for="m3"><span class="marca-emoji">🏆</span>Pilsen ⭐</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m4" value="Skol"><label for="m4"><span class="marca-emoji">🌟</span>Skol</label></div>
-          <div class="marca-card"><input type="radio" name="marca" id="m5" value="Stella Artois"><label for="m5"><span class="marca-emoji">💎</span>Stella Artois</label></div>
-        </div>
-        <div class="form-grid">
-          <div class="field" id="f-pedido"><label>Detalle del pedido *</label><input type="text" id="pedido" placeholder="Ej: 1 barril Munich 30L"><span class="field-error">Describí tu pedido</span></div>
-          <div class="field"><label>¿Barriles a consignación?</label>
-            <div class="radio-cards">
-              <div class="radio-card"><input type="radio" name="consignacion" id="c-no" value="NO" checked><label for="c-no"><span class="radio-icon">❌</span>No</label></div>
-              <div class="radio-card"><input type="radio" name="consignacion" id="c-si" value="SI"><label for="c-si"><span class="radio-icon">✅</span>Sí</label></div>
+        <div class="step-subtitle">Agregá las opciones que querés</div>
+
+        <div class="opciones-list">
+
+          <!-- PILSEN -->
+          <div>
+            <div class="opcion-group-title" style="color:var(--red)">🏆 PILSEN</div>
+            <div class="opcion-row" data-opcion="Pilsen — 1x 30L · ₲ 400.000" data-precio="400000">
+              <div class="opcion-info"><div class="opcion-name">1x barril 30L</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 400.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Pilsen — 2x 30L (60L) · ₲ 600.000" data-precio="600000">
+              <div class="opcion-info"><div class="opcion-name">2x barriles 30L — 60 litros</div><div class="opcion-inc">Ahorrás ₲ 200.000 vs precio individual</div></div>
+              <div class="opcion-price">₲ 600.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Pilsen — 3x 30L (90L) · ₲ 850.000" data-precio="850000">
+              <div class="opcion-info"><div class="opcion-name">3x barriles 30L — 90 litros</div><div class="opcion-inc">Ahorrás ₲ 350.000 vs precio individual</div></div>
+              <div class="opcion-price">₲ 850.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
           </div>
+
+          <!-- SKOL -->
+          <div>
+            <div class="opcion-group-title" style="color:#B8960C">🌟 SKOL</div>
+            <div class="opcion-row" data-opcion="Skol — 30L con mesa y vasos · ₲ 450.000" data-precio="450000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 450.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- STELLA ARTOIS -->
+          <div>
+            <div class="opcion-group-title" style="color:var(--stella-burg)">💎 STELLA ARTOIS</div>
+            <div class="opcion-row" data-opcion="Stella Artois — 20L con mesa y vasos · ₲ 550.000" data-precio="550000">
+              <div class="opcion-info"><div class="opcion-name">20 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 550.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- MUNICH ORIGINAL -->
+          <div>
+            <div class="opcion-group-title" style="color:var(--munich-green)">🍺 MUNICH ORIGINAL</div>
+            <div class="opcion-row" data-opcion="Munich Original — 30L con mesa y vasos · ₲ 400.000" data-precio="400000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 400.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 50L con mesa y vasos · ₲ 600.000" data-precio="600000">
+              <div class="opcion-info"><div class="opcion-name">50 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 600.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- MUNICH ULTRA -->
+          <div>
+            <div class="opcion-group-title" style="color:var(--munich-green)">⭐ MUNICH ULTRA</div>
+            <div class="opcion-row" data-opcion="Munich Ultra — 30L con mesa y vasos · ₲ 460.000" data-precio="460000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 460.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
         </div>
-        <div id="consignacion-fields" style="display:none;margin-bottom:16px">
+
+        <!-- CARRITO -->
+        <div id="carrito" style="display:none">
+          <div class="carrito-section">
+            <div class="carrito-title">🛒 MI PEDIDO</div>
+            <div id="carrito-items"></div>
+            <div class="carrito-total">TOTAL: <span id="carrito-total-val">₲ 0</span></div>
+          </div>
+        </div>
+        <div id="carrito-error" style="display:none;font-size:12px;color:#FF6B6B;margin-top:8px">Por favor agregá al menos una opción</div>
+
+        <div class="field" style="margin-top:20px"><label>¿Barriles a consignación?</label>
+          <div class="radio-cards">
+            <div class="radio-card"><input type="radio" name="consignacion" id="c-no" value="NO" checked><label for="c-no"><span class="radio-icon">❌</span>No</label></div>
+            <div class="radio-card"><input type="radio" name="consignacion" id="c-si" value="SI"><label for="c-si"><span class="radio-icon">✅</span>Sí</label></div>
+          </div>
+        </div>
+        <div id="consignacion-fields" style="display:none;margin-top:12px;margin-bottom:8px">
           <div class="field"><label>¿Qué querés consignar?</label><input type="text" id="consignacion-detalle" placeholder="Ej: 2 barriles adicionales de 30L"></div>
         </div>
-        <div class="form-grid single">
+        <div class="form-grid single" style="margin-top:16px">
           <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
         </div>
         <div class="form-nav"><button class="btn-back" onclick="prevStep(3)">← Atrás</button><button class="btn-next" onclick="nextStep(3)">Ver resumen →</button></div>
@@ -681,15 +773,32 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
 <script>
 let formData = {};
+let carrito = [];
 
 // Scroll to form
-function scrollToForm(marca, pedido){
-  document.getElementById('reserva').scrollIntoView({behavior:'smooth'});
-  if(marca){
-    const r = document.querySelector(`input[name="marca"][value="${marca}"]`);
-    if(r) r.checked = true;
-  }
-  if(pedido) document.getElementById('pedido').value = pedido;
+function scrollToForm(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); }
+
+// Carrito
+function addItem(btn){
+  const row = btn.closest('.opcion-row');
+  carrito.push({opcion: row.dataset.opcion, precio: parseInt(row.dataset.precio)});
+  renderCarrito();
+  setTimeout(()=>{ document.getElementById('carrito').scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
+}
+
+function removeItem(i){ carrito.splice(i,1); renderCarrito(); }
+
+function renderCarrito(){
+  const el = document.getElementById('carrito');
+  if(carrito.length===0){ el.style.display='none'; return; }
+  el.style.display='block';
+  document.getElementById('carrito-items').innerHTML = carrito.map((item,i)=>`
+    <div class="carrito-item">
+      <span class="carrito-item-name">${item.opcion}</span>
+      <button class="btn-remove" onclick="removeItem(${i})">✕</button>
+    </div>`).join('');
+  const total = carrito.reduce((s,i)=>s+i.precio,0);
+  document.getElementById('carrito-total-val').textContent = '₲ ' + total.toLocaleString('es-PY');
 }
 
 // Brand tabs
@@ -758,9 +867,9 @@ function validateStep(step){
     else{document.getElementById('f-fecha').classList.remove('has-error');document.getElementById('f-invitados').classList.remove('has-error');}
   }
   if(step===3){
-    if(!document.querySelector('input[name="marca"]:checked')){alert('Por favor seleccioná una marca');valid=false;}
-    else if(!document.getElementById('pedido').value.trim()){document.getElementById('f-pedido').classList.add('has-error');valid=false;}
-    else document.getElementById('f-pedido').classList.remove('has-error');
+    const errEl = document.getElementById('carrito-error');
+    if(carrito.length===0){ errEl.style.display='block'; valid=false; }
+    else errEl.style.display='none';
   }
   return valid;
 }
@@ -779,8 +888,8 @@ function collectData(){
     hora:document.getElementById('horaValue').value,
     lugar:document.getElementById('lugarValue').value,
     escaleras:document.querySelector('input[name="escaleras"]:checked')?.value,
-    marca:document.querySelector('input[name="marca"]:checked')?.value,
-    pedido:document.getElementById('pedido').value,
+    pedido:carrito.map(i=>i.opcion).join(' | '),
+    total:'₲ ' + carrito.reduce((s,i)=>s+i.precio,0).toLocaleString('es-PY'),
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
     consignacionDetalle:document.getElementById('consignacion-detalle')?.value,
     comentarios:document.getElementById('comentarios').value,
@@ -800,12 +909,13 @@ function buildResumen(){
     {label:'Invitados',value:formData.invitados},
     {label:'Lugar',value:formData.lugar},
     {label:'Escaleras',value:formData.escaleras},
-    {label:'Marca',value:formData.marca},
-    {label:'Pedido',value:formData.pedido},
     {label:'Consignación',value:formData.consignacion==='SI'?`Sí${formData.consignacionDetalle?' — '+formData.consignacionDetalle:''}`:null},
     {label:'Comentarios',value:formData.comentarios||null},
   ];
-  document.getElementById('resumenGrid').innerHTML=items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
+  let html = items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
+  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Pedido</div><div class="resumen-value" style="font-size:12px">${carrito.map(i=>i.opcion).join('<br>')}</div></div>`;
+  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Total</div><div class="resumen-value" style="font-size:20px;color:var(--red)">${formData.total}</div></div>`;
+  document.getElementById('resumenGrid').innerHTML=html;
 }
 
 function updateIndicators(step){
@@ -853,8 +963,9 @@ async function submitForm(){
   msg += '👥 *Invitados:* ' + formData.invitados + '\n';
   msg += '🏠 *Lugar:* ' + formData.lugar + '\n';
   msg += '🪜 *Escaleras:* ' + formData.escaleras + '\n';
-  msg += '\n🍺 *Marca:* ' + formData.marca + '\n';
-  msg += '📦 *Pedido:* ' + formData.pedido + '\n';
+  msg += '\n📦 *PEDIDO:*\n';
+  carrito.forEach(item => { msg += '  • ' + item.opcion + '\n'; });
+  msg += '\n💰 *TOTAL: ' + formData.total + '*\n';
   msg += '🔄 *Consignación:* ' + (formData.consignacion==='SI' ? 'Sí' + (formData.consignacionDetalle ? ' — ' + formData.consignacionDetalle : '') : 'No') + '\n';
   if(formData.comentarios) msg += '\n💬 *Comentarios:* ' + formData.comentarios + '\n';
 

@@ -274,16 +274,14 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .btn-remove:hover{border-color:#FF6B6B;color:#FF6B6B}
 .carrito-total{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);text-align:right;padding-top:12px;border-top:1px solid var(--border);margin-top:4px}
 .carrito-total span{color:var(--red)}
+.consign-opt{position:relative;margin-bottom:8px}
+.consign-opt input{position:absolute;opacity:0;width:0;height:0}
+.consign-opt label{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:.2s;background:var(--off)}
+.consign-opt input:checked + label{border-color:var(--red);background:var(--red-light)}
+.consign-opt label:hover{border-color:rgba(232,28,35,0.4)}
+.consign-opt-label{font-size:13px;font-weight:600;color:var(--text)}
+.consign-opt-price{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red)}
 
-/* CONSIGN POPUP */
-.consign-popup{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--white);border:2px solid var(--red);border-radius:18px;padding:16px 20px;box-shadow:0 12px 40px rgba(0,0,0,0.18);z-index:999;display:none;align-items:center;gap:14px;width:min(92vw,480px)}
-.consign-popup.show{display:flex;animation:popupIn .3s ease forwards}
-@keyframes popupIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-.consign-popup-text{flex:1;font-size:13px;font-weight:600;color:var(--text);line-height:1.4}
-.consign-popup-btns{display:flex;gap:8px;flex-shrink:0}
-.consign-popup-si{background:var(--red);color:#fff;border:none;padding:10px 16px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap}
-.consign-popup-no{background:transparent;color:var(--muted);border:1px solid var(--border);padding:10px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap}
-@media(max-width:480px){.consign-popup{flex-direction:column;align-items:flex-start}.consign-popup-btns{width:100%}.consign-popup-si,.consign-popup-no{flex:1;text-align:center}}
 </style>
 </head>
 <body>
@@ -745,7 +743,9 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           </div>
         </div>
         <div id="consignacion-fields" style="display:none;margin-top:12px;margin-bottom:8px">
-          <div class="field"><label>¿Qué querés consignar?</label><input type="text" id="consignacion-detalle" placeholder="Ej: 2 barriles adicionales de 30L"></div>
+          <div class="field"><label>Seleccioná el tamaño a consignar</label>
+            <div id="consign-options" style="margin-top:8px"></div>
+          </div>
         </div>
         <div class="form-grid single" style="margin-top:16px">
           <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
@@ -781,15 +781,6 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
   <div class="footer-copy">© 2025 MEGA CHOPP PARAGUAY · TODOS LOS DERECHOS RESERVADOS</div>
 </footer>
 
-<!-- CONSIGN POPUP -->
-<div class="consign-popup" id="consignPopup">
-  <div class="consign-popup-text">💡 ¿Querés agregar <strong>consignación</strong> a tu pedido?</div>
-  <div class="consign-popup-btns">
-    <button class="consign-popup-si" onclick="setConsignacion(true)">Sí, agregar</button>
-    <button class="consign-popup-no" onclick="setConsignacion(false)">No, gracias</button>
-  </div>
-</div>
-
 <script>
 let formData = {};
 let carrito = [];
@@ -798,35 +789,14 @@ let carrito = [];
 function scrollToForm(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); }
 
 // Carrito
-let consignTimer;
 function addItem(btn){
   const row = btn.closest('.opcion-row');
   carrito.push({opcion: row.dataset.opcion, precio: parseInt(row.dataset.precio)});
   renderCarrito();
-  showConsignPopup();
   setTimeout(()=>{ document.getElementById('carrito').scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
 }
 
 function removeItem(i){ carrito.splice(i,1); renderCarrito(); }
-
-function showConsignPopup(){
-  if(document.getElementById('c-si').checked) return;
-  const popup = document.getElementById('consignPopup');
-  popup.classList.add('show');
-  clearTimeout(consignTimer);
-  consignTimer = setTimeout(()=>popup.classList.remove('show'), 7000);
-}
-
-function setConsignacion(yes){
-  document.getElementById('consignPopup').classList.remove('show');
-  if(yes){
-    document.getElementById('c-si').checked = true;
-    document.getElementById('consignacion-fields').style.display = 'block';
-    setTimeout(()=>{ document.getElementById('consignacion-fields').scrollIntoView({behavior:'smooth',block:'center'}); }, 150);
-  } else {
-    document.getElementById('c-no').checked = true;
-  }
-}
 
 function renderCarrito(){
   const el = document.getElementById('carrito');
@@ -839,6 +809,7 @@ function renderCarrito(){
     </div>`).join('');
   const total = carrito.reduce((s,i)=>s+i.precio,0);
   document.getElementById('carrito-total-val').textContent = '₲ ' + total.toLocaleString('es-PY');
+  if(document.getElementById('c-si').checked) renderConsignOptions();
 }
 
 // Brand tabs
@@ -856,8 +827,30 @@ document.querySelectorAll('input[name="factura"]').forEach(r=>{
 
 // Consignación toggle
 document.querySelectorAll('input[name="consignacion"]').forEach(r=>{
-  r.addEventListener('change',()=>{ document.getElementById('consignacion-fields').style.display = r.value==='SI'?'block':'none'; });
+  r.addEventListener('change',()=>{
+    const fields = document.getElementById('consignacion-fields');
+    if(r.value==='SI'){ fields.style.display='block'; renderConsignOptions(); }
+    else fields.style.display='none';
+  });
 });
+
+function renderConsignOptions(){
+  const container = document.getElementById('consign-options');
+  const opts = [];
+  const seen = new Set();
+  carrito.forEach(item=>{
+    const o = item.opcion;
+    if(o.startsWith('Pilsen') && !seen.has('p')){seen.add('p');opts.push({id:'cp30',label:'Pilsen 30L',precio:'₲ 300.000'});}
+    if(o.startsWith('Skol') && !seen.has('sk')){seen.add('sk');opts.push({id:'csk30',label:'Skol 30L',precio:'₲ 390.000'});}
+    if(o.startsWith('Stella') && !seen.has('st')){seen.add('st');opts.push({id:'cst',label:'Stella Artois 20L',precio:'Consultá'});}
+    if(o.includes('Munich Original') && !seen.has('mo30')){seen.add('mo30');opts.push({id:'cmo30',label:'Munich Original 30L',precio:'₲ 350.000'});}
+    if(o.includes('Munich Original — 50L') && !seen.has('mo50')){seen.add('mo50');opts.push({id:'cmo50',label:'Munich Original 50L',precio:'₲ 550.000'});}
+    if(o.startsWith('Munich Ultra') && !seen.has('mu')){seen.add('mu');opts.push({id:'cmu30',label:'Munich Ultra 30L',precio:'₲ 450.000'});}
+  });
+  container.innerHTML = opts.length===0
+    ? '<div style="font-size:13px;color:var(--muted)">Primero agregá ítems al pedido.</div>'
+    : opts.map(o=>`<div class="consign-opt"><input type="checkbox" id="${o.id}" name="consign-opt" value="${o.label} · ${o.precio}"><label for="${o.id}"><span class="consign-opt-label">${o.label}</span><span class="consign-opt-price">${o.precio}</span></label></div>`).join('');
+}
 
 // Lugar
 document.querySelectorAll('input[name="lugar"]').forEach(r=>{
@@ -924,7 +917,7 @@ function collectData(){
     razonSocial:document.getElementById('razon-social').value,
     ruc:document.getElementById('ruc').value,
     ciudad:document.getElementById('ciudadValue').value,
-    fecha:document.getElementById('fecha').value,
+    fecha:(v=>v?v.split('-').reverse().join('/'):'')(document.getElementById('fecha').value),
     invitados:document.getElementById('invitados').value,
     hora:document.getElementById('horaValue').value,
     lugar:document.getElementById('lugarValue').value,
@@ -932,7 +925,7 @@ function collectData(){
     pedido:carrito.map(i=>i.opcion).join(' | '),
     total:'₲ ' + carrito.reduce((s,i)=>s+i.precio,0).toLocaleString('es-PY'),
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
-    consignacionDetalle:document.getElementById('consignacion-detalle')?.value,
+    consignacionDetalle:[...document.querySelectorAll('input[name="consign-opt"]:checked')].map(i=>i.value).join(' | '),
     comentarios:document.getElementById('comentarios').value,
   };
 }

@@ -749,15 +749,13 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         </div>
         <div class="field" style="margin-top:20px">
           <label>¿Vasos plásticos extras?</label>
-          <div class="hora-btns" id="vasosSelect" style="margin-top:10px">
-            <button class="hora-btn selected" onclick="selectVasos(this,'No')" type="button">No</button>
-            <button class="hora-btn" onclick="selectVasos(this,'25 vasos')" type="button">25</button>
-            <button class="hora-btn" onclick="selectVasos(this,'50 vasos')" type="button">50</button>
-            <button class="hora-btn" onclick="selectVasos(this,'100 vasos')" type="button">100</button>
-            <button class="hora-btn" onclick="selectVasos(this,'150 vasos')" type="button">150</button>
-            <button class="hora-btn" onclick="selectVasos(this,'200 vasos')" type="button">200</button>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px" id="vasosSelect">
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v0" value="No" checked><label for="v0"><span class="consign-opt-label">No, gracias</span><span class="consign-opt-price" style="color:var(--muted);font-size:14px">—</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v25" value="25 und · ₲ 10.000"><label for="v25"><span class="consign-opt-label">25 unidades</span><span class="consign-opt-price">₲ 10.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v50" value="50 und · ₲ 20.000"><label for="v50"><span class="consign-opt-label">50 unidades</span><span class="consign-opt-price">₲ 20.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v75" value="75 und · ₲ 30.000"><label for="v75"><span class="consign-opt-label">75 unidades</span><span class="consign-opt-price">₲ 30.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v100" value="100 und · ₲ 40.000"><label for="v100"><span class="consign-opt-label">100 unidades</span><span class="consign-opt-price">₲ 40.000</span></label></div>
           </div>
-          <input type="hidden" id="vasosValue" value="No">
         </div>
         <div class="form-grid single" style="margin-top:16px">
           <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
@@ -885,13 +883,6 @@ function selectCiudad(btn,val){
   }
 }
 
-// Vasos
-function selectVasos(btn,val){
-  document.querySelectorAll('#vasosSelect .hora-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  document.getElementById('vasosValue').value=val;
-}
-
 // Hora
 function selectHora(btn,val){
   document.querySelectorAll('.hora-btn').forEach(b=>b.classList.remove('selected'));
@@ -943,7 +934,7 @@ function collectData(){
     escaleras:document.querySelector('input[name="escaleras"]:checked')?.value,
     pedido:carrito.map(i=>i.opcion).join(' | '),
     total:'₲ ' + carrito.reduce((s,i)=>s+i.precio,0).toLocaleString('es-PY'),
-    vasos:document.getElementById('vasosValue').value,
+    vasos:document.querySelector('input[name="vasos-opt"]:checked')?.value,
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
     consignacionDetalle:[...document.querySelectorAll('input[name="consign-opt"]:checked')].map(i=>i.value).join(' | '),
     comentarios:document.getElementById('comentarios').value,

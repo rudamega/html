@@ -303,14 +303,14 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
     <div class="sec-eye">Nuestros productos</div>
     <h2 class="sec-title">ELEGÍ TU<br><span>CHOPP</span></h2>
     <div class="brand-tabs">
-      <button class="brand-tab active" onclick="showBrand('munich-orig',this)">Munich Original</button>
-      <button class="brand-tab" onclick="showBrand('munich-ultra',this)">Munich Ultra</button>
-      <button class="brand-tab" onclick="showBrand('pilsen',this)">Pilsen</button>
+      <button class="brand-tab active" onclick="showBrand('pilsen',this)">🏆 Pilsen</button>
       <button class="brand-tab" onclick="showBrand('skol',this)">Skol</button>
       <button class="brand-tab" onclick="showBrand('stella',this)">Stella Artois</button>
+      <button class="brand-tab" onclick="showBrand('munich-orig',this)">Munich Original</button>
+      <button class="brand-tab" onclick="showBrand('munich-ultra',this)">Munich Ultra</button>
     </div>
 
-    <div id="munich-orig" class="brand-panel active">
+    <div id="munich-orig" class="brand-panel">
       <div class="price-card">
         <div class="card-lt">30<span> lts</span></div>
         <div class="card-price">₲ 400.000</div>
@@ -353,7 +353,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
       </div>
     </div>
 
-    <div id="pilsen" class="brand-panel">
+    <div id="pilsen" class="brand-panel active">
       <div class="price-card">
         <div class="card-lt">30<span> lts</span></div>
         <div class="card-price">₲ 400.000</div>
@@ -538,44 +538,6 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 
         <div class="opciones-list">
 
-          <!-- MUNICH ORIGINAL -->
-          <div>
-            <div class="opcion-group-title" style="color:#4CAF80">🍺 MUNICH ORIGINAL</div>
-            <div class="opcion-row" data-opcion="Munich Original — 50L sin mesa · ₲ 590.000" data-precio="590000">
-              <div class="opcion-info"><div class="opcion-name">50 litros — sin mesa</div><div class="opcion-inc">Máquina + barril</div></div>
-              <div class="opcion-price">₲ 590.000</div>
-              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
-            </div>
-            <div style="height:8px"></div>
-            <div class="opcion-row" data-opcion="Munich Original — 50L con mesa y vasos · ₲ 600.000" data-precio="600000">
-              <div class="opcion-info"><div class="opcion-name">50 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
-              <div class="opcion-price">₲ 600.000</div>
-              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
-            </div>
-            <div style="height:8px"></div>
-            <div class="opcion-row" data-opcion="Munich Original — 30L sin mesa · ₲ 390.000" data-precio="390000">
-              <div class="opcion-info"><div class="opcion-name">30 litros — sin mesa</div><div class="opcion-inc">Máquina + barril</div></div>
-              <div class="opcion-price">₲ 390.000</div>
-              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
-            </div>
-            <div style="height:8px"></div>
-            <div class="opcion-row" data-opcion="Munich Original — 30L con mesa y vasos · ₲ 400.000" data-precio="400000">
-              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
-              <div class="opcion-price">₲ 400.000</div>
-              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
-            </div>
-          </div>
-
-          <!-- MUNICH ULTRA -->
-          <div>
-            <div class="opcion-group-title" style="color:#4CAF80">⭐ MUNICH ULTRA</div>
-            <div class="opcion-row" data-opcion="Munich Ultra — 30L con mesa y vasos · ₲ 460.000" data-precio="460000">
-              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
-              <div class="opcion-price">₲ 460.000</div>
-              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
-            </div>
-          </div>
-
           <!-- PILSEN -->
           <div>
             <div class="opcion-group-title" style="color:var(--red)">🏆 PILSEN</div>
@@ -614,6 +576,44 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
             <div class="opcion-row" data-opcion="Stella Artois — 20L con mesa y vasos · ₲ 550.000" data-precio="550000">
               <div class="opcion-info"><div class="opcion-name">20 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
               <div class="opcion-price">₲ 550.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- MUNICH ORIGINAL -->
+          <div>
+            <div class="opcion-group-title" style="color:#4CAF80">🍺 MUNICH ORIGINAL</div>
+            <div class="opcion-row" data-opcion="Munich Original — 50L sin mesa · ₲ 590.000" data-precio="590000">
+              <div class="opcion-info"><div class="opcion-name">50 litros — sin mesa</div><div class="opcion-inc">Máquina + barril</div></div>
+              <div class="opcion-price">₲ 590.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 50L con mesa y vasos · ₲ 600.000" data-precio="600000">
+              <div class="opcion-info"><div class="opcion-name">50 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 600.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 30L sin mesa · ₲ 390.000" data-precio="390000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — sin mesa</div><div class="opcion-inc">Máquina + barril</div></div>
+              <div class="opcion-price">₲ 390.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+            <div style="height:8px"></div>
+            <div class="opcion-row" data-opcion="Munich Original — 30L con mesa y vasos · ₲ 400.000" data-precio="400000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 400.000</div>
+              <button class="btn-add" onclick="addItem(this)">+ ADD</button>
+            </div>
+          </div>
+
+          <!-- MUNICH ULTRA -->
+          <div>
+            <div class="opcion-group-title" style="color:#4CAF80">⭐ MUNICH ULTRA</div>
+            <div class="opcion-row" data-opcion="Munich Ultra — 30L con mesa y vasos · ₲ 460.000" data-precio="460000">
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-price">₲ 460.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
           </div>
@@ -684,6 +684,7 @@ function addItem(btn){
   const precio = parseInt(row.dataset.precio);
   carrito.push({opcion, precio});
   renderCarrito();
+  setTimeout(()=>{ document.getElementById('carrito').scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
 }
 
 function removeItem(i){

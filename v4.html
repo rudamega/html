@@ -274,6 +274,16 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
 .btn-remove:hover{border-color:#FF6B6B;color:#FF6B6B}
 .carrito-total{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);text-align:right;padding-top:12px;border-top:1px solid var(--border);margin-top:4px}
 .carrito-total span{color:var(--red)}
+
+/* CONSIGN POPUP */
+.consign-popup{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--white);border:2px solid var(--red);border-radius:18px;padding:16px 20px;box-shadow:0 12px 40px rgba(0,0,0,0.18);z-index:999;display:none;align-items:center;gap:14px;width:min(92vw,480px)}
+.consign-popup.show{display:flex;animation:popupIn .3s ease forwards}
+@keyframes popupIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.consign-popup-text{flex:1;font-size:13px;font-weight:600;color:var(--text);line-height:1.4}
+.consign-popup-btns{display:flex;gap:8px;flex-shrink:0}
+.consign-popup-si{background:var(--red);color:#fff;border:none;padding:10px 16px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap}
+.consign-popup-no{background:transparent;color:var(--muted);border:1px solid var(--border);padding:10px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap}
+@media(max-width:480px){.consign-popup{flex-direction:column;align-items:flex-start}.consign-popup-btns{width:100%}.consign-popup-si,.consign-popup-no{flex:1;text-align:center}}
 </style>
 </head>
 <body>
@@ -635,7 +645,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <input type="hidden" id="lugarValue">
         <div class="field" style="margin-top:20px;margin-bottom:8px"><label>¿Hay que subir escaleras? *</label></div>
         <div class="radio-cards" style="grid-template-columns:1fr 1fr;max-width:280px">
-          <div class="radio-card"><input type="radio" name="escaleras" id="esc-no" value="No" checked><label for="esc-no"><span class="radio-icon">❌</span>No</label></div>
+          <div class="radio-card"><input type="radio" name="escaleras" id="esc-no" value="No"><label for="esc-no"><span class="radio-icon">❌</span>No</label></div>
           <div class="radio-card"><input type="radio" name="escaleras" id="esc-si" value="Sí"><label for="esc-si"><span class="radio-icon">✅</span>Sí</label></div>
         </div>
         <div class="form-nav"><button class="btn-back" onclick="prevStep(2)">← Atrás</button><button class="btn-next" onclick="nextStep(2)">Siguiente →</button></div>
@@ -652,19 +662,19 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div>
             <div class="opcion-group-title" style="color:var(--red)">🏆 PILSEN</div>
             <div class="opcion-row" data-opcion="Pilsen — 1x 30L · ₲ 400.000" data-precio="400000">
-              <div class="opcion-info"><div class="opcion-name">1x barril 30L</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-info"><div class="opcion-name">1x barril 30L</div><div class="opcion-inc">Máquina + barril + mesa + vasos · Recarga <strong style="color:var(--red)">₲ 300.000</strong></div></div>
               <div class="opcion-price">₲ 400.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
             <div style="height:8px"></div>
             <div class="opcion-row" data-opcion="Pilsen — 2x 30L (60L) · ₲ 600.000" data-precio="600000">
-              <div class="opcion-info"><div class="opcion-name">2x barriles 30L — 60 litros</div><div class="opcion-inc">Ahorrás ₲ 200.000 vs precio individual</div></div>
+              <div class="opcion-info"><div class="opcion-name">2x barriles 30L — 60 litros</div><div class="opcion-inc">Ahorrás ₲ 200.000 vs precio individual · Recarga <strong style="color:var(--red)">₲ 300.000</strong> c/u</div></div>
               <div class="opcion-price">₲ 600.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
             <div style="height:8px"></div>
             <div class="opcion-row" data-opcion="Pilsen — 3x 30L (90L) · ₲ 850.000" data-precio="850000">
-              <div class="opcion-info"><div class="opcion-name">3x barriles 30L — 90 litros</div><div class="opcion-inc">Ahorrás ₲ 350.000 vs precio individual</div></div>
+              <div class="opcion-info"><div class="opcion-name">3x barriles 30L — 90 litros</div><div class="opcion-inc">Ahorrás ₲ 350.000 vs precio individual · Recarga <strong style="color:var(--red)">₲ 300.000</strong> c/u</div></div>
               <div class="opcion-price">₲ 850.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
@@ -674,7 +684,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div>
             <div class="opcion-group-title" style="color:#B8960C">🌟 SKOL</div>
             <div class="opcion-row" data-opcion="Skol — 30L con mesa y vasos · ₲ 450.000" data-precio="450000">
-              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos · Recarga <strong style="color:#B8960C">₲ 390.000</strong></div></div>
               <div class="opcion-price">₲ 450.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
@@ -684,7 +694,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div>
             <div class="opcion-group-title" style="color:var(--stella-burg)">💎 STELLA ARTOIS</div>
             <div class="opcion-row" data-opcion="Stella Artois — 20L con mesa y vasos · ₲ 550.000" data-precio="550000">
-              <div class="opcion-info"><div class="opcion-name">20 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-info"><div class="opcion-name">20 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos · Consultá recarga</div></div>
               <div class="opcion-price">₲ 550.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
@@ -694,13 +704,13 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div>
             <div class="opcion-group-title" style="color:var(--munich-green)">🍺 MUNICH ORIGINAL</div>
             <div class="opcion-row" data-opcion="Munich Original — 30L con mesa y vasos · ₲ 400.000" data-precio="400000">
-              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos · Recarga <strong style="color:var(--munich-green)">₲ 350.000</strong></div></div>
               <div class="opcion-price">₲ 400.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
             <div style="height:8px"></div>
             <div class="opcion-row" data-opcion="Munich Original — 50L con mesa y vasos · ₲ 600.000" data-precio="600000">
-              <div class="opcion-info"><div class="opcion-name">50 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-info"><div class="opcion-name">50 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos · Recarga 30L <strong style="color:var(--munich-green)">₲ 350.000</strong> / 50L <strong style="color:var(--munich-green)">₲ 550.000</strong></div></div>
               <div class="opcion-price">₲ 600.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
@@ -710,7 +720,7 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
           <div>
             <div class="opcion-group-title" style="color:var(--munich-green)">⭐ MUNICH ULTRA</div>
             <div class="opcion-row" data-opcion="Munich Ultra — 30L con mesa y vasos · ₲ 460.000" data-precio="460000">
-              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos</div></div>
+              <div class="opcion-info"><div class="opcion-name">30 litros — con mesa y 25 vasos</div><div class="opcion-inc">Máquina + barril + mesa + vasos · Recarga <strong style="color:var(--munich-green)">₲ 450.000</strong></div></div>
               <div class="opcion-price">₲ 460.000</div>
               <button class="btn-add" onclick="addItem(this)">+ ADD</button>
             </div>
@@ -771,6 +781,15 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
   <div class="footer-copy">© 2025 MEGA CHOPP PARAGUAY · TODOS LOS DERECHOS RESERVADOS</div>
 </footer>
 
+<!-- CONSIGN POPUP -->
+<div class="consign-popup" id="consignPopup">
+  <div class="consign-popup-text">💡 ¿Querés agregar <strong>consignación</strong> a tu pedido?</div>
+  <div class="consign-popup-btns">
+    <button class="consign-popup-si" onclick="setConsignacion(true)">Sí, agregar</button>
+    <button class="consign-popup-no" onclick="setConsignacion(false)">No, gracias</button>
+  </div>
+</div>
+
 <script>
 let formData = {};
 let carrito = [];
@@ -779,14 +798,35 @@ let carrito = [];
 function scrollToForm(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); }
 
 // Carrito
+let consignTimer;
 function addItem(btn){
   const row = btn.closest('.opcion-row');
   carrito.push({opcion: row.dataset.opcion, precio: parseInt(row.dataset.precio)});
   renderCarrito();
+  showConsignPopup();
   setTimeout(()=>{ document.getElementById('carrito').scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
 }
 
 function removeItem(i){ carrito.splice(i,1); renderCarrito(); }
+
+function showConsignPopup(){
+  if(document.getElementById('c-si').checked) return;
+  const popup = document.getElementById('consignPopup');
+  popup.classList.add('show');
+  clearTimeout(consignTimer);
+  consignTimer = setTimeout(()=>popup.classList.remove('show'), 7000);
+}
+
+function setConsignacion(yes){
+  document.getElementById('consignPopup').classList.remove('show');
+  if(yes){
+    document.getElementById('c-si').checked = true;
+    document.getElementById('consignacion-fields').style.display = 'block';
+    setTimeout(()=>{ document.getElementById('consignacion-fields').scrollIntoView({behavior:'smooth',block:'center'}); }, 150);
+  } else {
+    document.getElementById('c-no').checked = true;
+  }
+}
 
 function renderCarrito(){
   const el = document.getElementById('carrito');
@@ -864,6 +904,7 @@ function validateStep(step){
     else if(!document.getElementById('invitados').value){document.getElementById('f-invitados').classList.add('has-error');valid=false;}
     else if(!document.getElementById('horaValue').value){alert('Por favor seleccioná la hora de arranque');valid=false;}
     else if(!document.getElementById('lugarValue').value){alert('Por favor seleccioná el lugar del evento');valid=false;}
+    else if(!document.querySelector('input[name="escaleras"]:checked')){alert('Por favor indicá si hay que subir escaleras');valid=false;}
     else{document.getElementById('f-fecha').classList.remove('has-error');document.getElementById('f-invitados').classList.remove('has-error');}
   }
   if(step===3){

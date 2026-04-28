@@ -747,6 +747,18 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
             <div id="consign-options" style="margin-top:8px"></div>
           </div>
         </div>
+        <div class="field" style="margin-top:20px">
+          <label>¿Vasos plásticos extras?</label>
+          <div class="hora-btns" id="vasosSelect" style="margin-top:10px">
+            <button class="hora-btn selected" onclick="selectVasos(this,'No')" type="button">No</button>
+            <button class="hora-btn" onclick="selectVasos(this,'25 vasos')" type="button">25</button>
+            <button class="hora-btn" onclick="selectVasos(this,'50 vasos')" type="button">50</button>
+            <button class="hora-btn" onclick="selectVasos(this,'100 vasos')" type="button">100</button>
+            <button class="hora-btn" onclick="selectVasos(this,'150 vasos')" type="button">150</button>
+            <button class="hora-btn" onclick="selectVasos(this,'200 vasos')" type="button">200</button>
+          </div>
+          <input type="hidden" id="vasosValue" value="No">
+        </div>
         <div class="form-grid single" style="margin-top:16px">
           <div class="field"><label>Comentarios adicionales</label><textarea id="comentarios" placeholder="Alguna información extra..."></textarea></div>
         </div>
@@ -873,6 +885,13 @@ function selectCiudad(btn,val){
   }
 }
 
+// Vasos
+function selectVasos(btn,val){
+  document.querySelectorAll('#vasosSelect .hora-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('vasosValue').value=val;
+}
+
 // Hora
 function selectHora(btn,val){
   document.querySelectorAll('.hora-btn').forEach(b=>b.classList.remove('selected'));
@@ -924,6 +943,7 @@ function collectData(){
     escaleras:document.querySelector('input[name="escaleras"]:checked')?.value,
     pedido:carrito.map(i=>i.opcion).join(' | '),
     total:'₲ ' + carrito.reduce((s,i)=>s+i.precio,0).toLocaleString('es-PY'),
+    vasos:document.getElementById('vasosValue').value,
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
     consignacionDetalle:[...document.querySelectorAll('input[name="consign-opt"]:checked')].map(i=>i.value).join(' | '),
     comentarios:document.getElementById('comentarios').value,
@@ -935,6 +955,7 @@ function buildResumen(){
   let html = '';
   html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Pedido</div><div class="resumen-value" style="font-size:12px">${carrito.map(i=>i.opcion).join('<br>')}</div></div>`;
   if(formData.consignacion==='SI') html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Consignación</div><div class="resumen-value" style="font-size:12px">${formData.consignacionDetalle||'Sí'}</div></div>`;
+  if(formData.vasos && formData.vasos!=='No') html += `<div class="resumen-item"><div class="resumen-label">Vasos extras</div><div class="resumen-value">${formData.vasos}</div></div>`;
   html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Total</div><div class="resumen-value" style="font-size:20px;color:var(--red)">${formData.total}</div></div>`;
   const items=[
     {label:'Nombre',value:formData.nombre},
@@ -1001,6 +1022,7 @@ async function submitForm(){
   msg += '\n📦 *PEDIDO:*\n';
   carrito.forEach(item => { msg += '  • ' + item.opcion + '\n'; });
   msg += '\n💰 *TOTAL: ' + formData.total + '*\n';
+  if(formData.vasos && formData.vasos!=='No') msg += '🥤 *Vasos extras:* ' + formData.vasos + '\n';
   msg += '🔄 *Consignación:* ' + (formData.consignacion==='SI' ? 'Sí' + (formData.consignacionDetalle ? ' — ' + formData.consignacionDetalle : '') : 'No') + '\n';
   if(formData.comentarios) msg += '\n💬 *Comentarios:* ' + formData.comentarios + '\n';
 

@@ -932,6 +932,10 @@ function collectData(){
 
 function buildResumen(){
   collectData();
+  let html = '';
+  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Pedido</div><div class="resumen-value" style="font-size:12px">${carrito.map(i=>i.opcion).join('<br>')}</div></div>`;
+  if(formData.consignacion==='SI') html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Consignación</div><div class="resumen-value" style="font-size:12px">${formData.consignacionDetalle||'Sí'}</div></div>`;
+  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Total</div><div class="resumen-value" style="font-size:20px;color:var(--red)">${formData.total}</div></div>`;
   const items=[
     {label:'Nombre',value:formData.nombre},
     {label:'CI',value:formData.ci},
@@ -943,12 +947,9 @@ function buildResumen(){
     {label:'Invitados',value:formData.invitados},
     {label:'Lugar',value:formData.lugar},
     {label:'Escaleras',value:formData.escaleras},
-    {label:'Consignación',value:formData.consignacion==='SI'?`Sí${formData.consignacionDetalle?' — '+formData.consignacionDetalle:''}`:null},
     {label:'Comentarios',value:formData.comentarios||null},
   ];
-  let html = items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
-  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Pedido</div><div class="resumen-value" style="font-size:12px">${carrito.map(i=>i.opcion).join('<br>')}</div></div>`;
-  html += `<div class="resumen-item" style="grid-column:1/-1"><div class="resumen-label">Total</div><div class="resumen-value" style="font-size:20px;color:var(--red)">${formData.total}</div></div>`;
+  html += items.filter(i=>i.value).map(i=>`<div class="resumen-item"><div class="resumen-label">${i.label}</div><div class="resumen-value">${i.value}</div></div>`).join('');
   document.getElementById('resumenGrid').innerHTML=html;
 }
 

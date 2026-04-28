@@ -750,11 +750,11 @@ footer{background:var(--dark);padding:40px 20px;text-align:center}
         <div class="field" style="margin-top:20px">
           <label>¿Vasos plásticos extras?</label>
           <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px" id="vasosSelect">
-            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v0" value="No" checked><label for="v0"><span class="consign-opt-label">No, gracias</span><span class="consign-opt-price" style="color:var(--muted);font-size:14px">—</span></label></div>
-            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v25" value="25 und · ₲ 10.000"><label for="v25"><span class="consign-opt-label">25 unidades</span><span class="consign-opt-price">₲ 10.000</span></label></div>
-            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v50" value="50 und · ₲ 20.000"><label for="v50"><span class="consign-opt-label">50 unidades</span><span class="consign-opt-price">₲ 20.000</span></label></div>
-            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v75" value="75 und · ₲ 30.000"><label for="v75"><span class="consign-opt-label">75 unidades</span><span class="consign-opt-price">₲ 30.000</span></label></div>
-            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v100" value="100 und · ₲ 40.000"><label for="v100"><span class="consign-opt-label">100 unidades</span><span class="consign-opt-price">₲ 40.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v0" value="No" data-precio="0" checked><label for="v0"><span class="consign-opt-label">No, gracias</span><span class="consign-opt-price" style="color:var(--muted);font-size:14px">—</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v25" value="25 und · ₲ 10.000" data-precio="10000"><label for="v25"><span class="consign-opt-label">25 unidades</span><span class="consign-opt-price">₲ 10.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v50" value="50 und · ₲ 20.000" data-precio="20000"><label for="v50"><span class="consign-opt-label">50 unidades</span><span class="consign-opt-price">₲ 20.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v75" value="75 und · ₲ 30.000" data-precio="30000"><label for="v75"><span class="consign-opt-label">75 unidades</span><span class="consign-opt-price">₲ 30.000</span></label></div>
+            <div class="consign-opt"><input type="radio" name="vasos-opt" id="v100" value="100 und · ₲ 40.000" data-precio="40000"><label for="v100"><span class="consign-opt-label">100 unidades</span><span class="consign-opt-price">₲ 40.000</span></label></div>
           </div>
         </div>
         <div class="form-grid single" style="margin-top:16px">
@@ -933,7 +933,7 @@ function collectData(){
     lugar:document.getElementById('lugarValue').value,
     escaleras:document.querySelector('input[name="escaleras"]:checked')?.value,
     pedido:carrito.map(i=>i.opcion).join(' | '),
-    total:'₲ ' + carrito.reduce((s,i)=>s+i.precio,0).toLocaleString('es-PY'),
+    total:'₲ ' + (carrito.reduce((s,i)=>s+i.precio,0) + parseInt(document.querySelector('input[name="vasos-opt"]:checked')?.dataset.precio||0)).toLocaleString('es-PY'),
     vasos:document.querySelector('input[name="vasos-opt"]:checked')?.value,
     consignacion:document.querySelector('input[name="consignacion"]:checked')?.value,
     consignacionDetalle:[...document.querySelectorAll('input[name="consign-opt"]:checked')].map(i=>i.value).join(' | '),
